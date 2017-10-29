@@ -1,0 +1,33 @@
+监听键盘enter 事件
+$("#testInput").on('keydown',function(e){
+	if(e.keyCode === 13){
+      alert("13");
+    }
+});
+
+========================================2017/8/31
+  <input onkeyup="this.value=this.value.replace(/[^0-9-]+/,'');" type="text"
+  用于限制只能输入数字
+
+<aop:aspectj-autoproxy proxy-target-class="false" /> 表示使用JDK自带的代理方式
+代理有二种方式使用JDK基于接口的代理
+使用cglib可以基于类的动态代理
+
+
+用于后台Bean 校验的JS
+$('.input-form').submit(function(){
+		var process = Letsun.process('正在保存数据，请稍候...');
+		$(this).ajaxSubmit({
+			success: function(re){
+				process.close();
+				Letsun.form_valid(re, function(){
+					$('.cancel-btn').click();
+				});
+			}
+		});
+		return false;
+});
+
+为maven项目添加 spring-test-4.3.7.RELEASE.jar 运行发现报错 说找不到 spring-core-4.3.9.RELEASE.jar
+看了一下发现 test 依赖 core 所以 maven导入了 spring-core-4.3.7.RELEASE.jar, 但是 4.3.9 的那个 被替换掉了
+改成spring-test-4.3.9.RELEASE.jar 就没事了,所以 版本一定要对应

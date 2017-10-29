@@ -1,0 +1,2 @@
+rabbitmqctl  set_permissions -p / admin '.*' '.*' '.*' 设置权限  Rabbit安装目录sbin 下执行
+需要在web 15762 页面设置
