@@ -2,9 +2,12 @@ git diff 查看暂存区与工作区的区别
 git diff --cached 
 git diff --staged 查看暂存区与上次提交的快照的区别
 git commit -a -m '跳过暂存步骤提交'
-
+git rm git.txt  -> commit -> push -> 然后就OK了
+git rm --cached test.class 表示从跟踪清单中删除,但是当前目录下还是存在，以便以后在.gitignore 添加
 git add *.java 
 git add xxx.xxx
+git mv test.txt t.txt 重命名文件
+git log -p -2 查看最近二次提交的差异
 
 
 git config --list 查看配置信息
