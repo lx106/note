@@ -1,3 +1,9 @@
+git reset 将存入暂存区的文件回退到工作空间
+
+git log --pretty=format:"%h - %an, %ar : %s" 格式化历史提交信息
+git log --graph
+
+git log --pretty=oneline
 
 
 git diff 查看暂存区与工作区的区别。
