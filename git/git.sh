@@ -1,3 +1,6 @@
+git diff --cached 
+git diff --staged 
+
 git add *.java 
 git add xxx.xxx
 
