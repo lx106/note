@@ -4,6 +4,7 @@ HEAD 可以想象为当前分支的别名
 git checkout -b iss53 相当于
 git branch iss53
 git checkout iss53
+gitk 可查看分支树
 
 ####################################################
 
