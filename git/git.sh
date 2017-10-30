@@ -8,7 +8,7 @@ git add *.java
 git add xxx.xxx
 git mv test.txt t.txt 重命名文件
 git log -p -2 查看最近二次提交的差异
-
+git log -p --word-diff
 
 git config --list 查看配置信息
 git config user.email  查看具体配置 
