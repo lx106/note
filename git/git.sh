@@ -1,3 +1,27 @@
+打标签
+git tag 
+git tag -a tag1 -m "第一个标签"
+git tag -a tag0 818739fa23c4 -m 'mv file'  给历史提交创建标签
+git push note tag0 提交tag0  发布release版本
+git push origin --tags
+可以设置别名 , 
+$ git config --global alias.co checkout  命别名
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+
+git config --global alias.last "log --pretty=oneline"
+gitk 弹出图形界面
+$ git config --global alias.visual '!gitk'
+
+#####################################################
+
+git push [remote-name] [branch-name]
+git remote rename origin og
+
+git fetch [remote-name] 命令会到远程仓库中拉取所有你本地仓库中还没有的数据
+
+git checkout -- t.txt 工作空间中已修改的文件 回退到上次提交的状态
 git reset 将存入暂存区的文件回退到工作空间
 
 git log --pretty=format:"%h - %an, %ar : %s" 格式化历史提交信息
