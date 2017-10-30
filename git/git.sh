@@ -1,5 +1,7 @@
+git diff 查看暂存区与工作区的区别
 git diff --cached 
-git diff --staged 
+git diff --staged 查看暂存区与上次提交的快照的区别
+git commit -a -m '跳过暂存步骤提交'
 
 git add *.java 
 git add xxx.xxx
