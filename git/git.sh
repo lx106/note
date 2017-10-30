@@ -1,6 +1,9 @@
 branch 分支
 Git 中的分支，其实本质上仅仅是个指向 commit 对象的可变指针
 HEAD 可以想象为当前分支的别名
+git checkout -b iss53 相当于
+git branch iss53
+git checkout iss53
 
 ####################################################
 
