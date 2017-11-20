@@ -1,0 +1,34 @@
+use foobar 
+db.persons.insert({name:"liuxun"})
+show collections
+db.persons.find()
+db.persons.findOne()
+db.persons.update({name:"liuxun",{$set:{name:"xun"}})
+	
+1.创建一个数据库
+use [datebaseName]
+2.查看所有数据库
+show dbs
+3.给指定数据库添加集合并添加记录
+db.[documentName].insert({...})
+4.查看数据库中的所有文档
+show collections
+5.更新文档数据
+db.[documentName].update({查询条件},{更新条件})
+6.删除文档中的数据	
+db.persons.remove({name:"liuxun"})
+
+命令行下
+var p = db.persons.findOne();
+db.persons.update({p,{name:"liuxun"}})	
+	
+设置过期索引
+db.index.ensureIndex({time:-1},{expireAfterSeconds:30})	
+db.index.insert({time:new Date()})
+	
+全文索引
+db.article.ensureIndex({"article":"text"})	
+db.article.insert({"article":"aa bb cc dd ee"})
+db.article.insert({"article":"aa bb cc hh ee"})	
+db.article.find({$text:{$search:"aa"}})	
+	
