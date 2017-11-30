@@ -1,0 +1,3 @@
+ngrok http 8080
+ngrok http -subdomain=liuxun 8080
+ngrok -config=ngrok.cfg -subdomain liuxun 80
