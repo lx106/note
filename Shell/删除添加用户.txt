@@ -1,0 +1,25 @@
+添加用户
+#! /bin/bash
+#批量添加指定数量的用户
+read -p "请输入要添加的用户数量" -t 30 num
+read -p "请输入用户名" -t 30 name
+read -p "请输入用户密码" -t 30 -s pass
+if [ !-z "$name" -a !-z "$num" -a !-z "$pass" ]
+  then
+  y=$(echo $num | sed 's/[0-9]//g')
+  if [ -z "$y" ]
+    then 
+    for((i=1;i<=$num;i++))
+      do
+        useradd $name$i &> /dev/null
+	echo $pass | passwd
+      done
+  fi
+fi
+
+批量删除用户
+#! /bin/bash
+for i in $(cat /etc/passwd | grep /bin/bash | grep -v root | grep -v xun | cut -d ":" -f1)
+do
+  userdel -r $i
+done

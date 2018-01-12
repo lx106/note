@@ -1,0 +1,9 @@
+cat /etc/sysconfig/network 
+用于配置主机名
+
+cat /etc/sysconfig/network-scripts/ifcfg-eno16777736 
+用于配置主机ip等等
+
+cat /etc/hosts
+用于主机名与ip对应
+

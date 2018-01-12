@@ -1,0 +1,44 @@
+清理:删除.class文件
+编译:生成.class文件
+测试:自动调用junit
+报告：测试程序执行结果
+打包：打成war ,jar包
+安装：打包文件复制到仓库中的指定位置
+部署：将动态web工程生成的war包复制到Servlet容器的指定目录下。
+
+groupid    com.dongpeng.monitor 公司.项目名
+artifactid  模块名
+version     版本号 
+
+<groupid>org.springframeword</groupid>
+<artifactid>spring-core</artifactid>
+<version>4.3.10.RELEASE</version>
+
+org/springframeword/spring-core/4.3.10.RELEASE/spring-core-4.3.10.RELEASE.jar
+
+仓库 Nexus
+本地仓库
+远程仓库 (私服,中央仓库，中央仓库镜像)
+
+仓库内容
+maven自身所需要的抄件
+第三方框架的jar
+用户的jar
+mvn compile
+
+<scope></scope>
+test     junit      
+  对主程序无效
+  对测试程序有效
+  不参与打包
+compile
+  对主程序有效
+  对测试程序有效
+  参与打包
+provided  serlvet
+  对主程序无效
+  对测试程序有效
+  不参与打包
+   
+maven web 工程
+开发-部署-运行  jar包由tomcat容器提供 例如：servlet-api.jar

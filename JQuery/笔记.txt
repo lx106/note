@@ -1,0 +1,2 @@
+<link rel="stylesheet" href="${resources}/css/index.css?v=20171214"> 
+CDN环境 修改样式加上 版本号。 让其重新获取样式。

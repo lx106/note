@@ -1,0 +1,103 @@
+web.xml 
+ 
+ 添加
+
+ 	 <!-- 配置Druid add by liuxun 20171220 start -->
+ 	<servlet>
+		<servlet-name>DruidStatView</servlet-name>
+		<servlet-class>com.alibaba.druid.support.http.StatViewServlet</servlet-class>
+		<init-param>
+			<!-- 允许清空统计数据 -->
+			<param-name>resetEnable</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<!-- ip过滤规则 （1）deny优先于allow，如果在deny列表中，就算在allow列表中，也会被拒绝。 （2）如果allow没有配置或者为空，则允许所有访问 
+			ip配置格式 <IP> 或者 <IP>/<SUB_NET_MASK_size> 其中 128.242.127.1/24 24表示，前面24位是子网掩码，比对的时候，前面24位相同就匹配。 
+			不支持IPV6 由于匹配规则不支持IPV6，配置了allow或者deny之后，会导致IPV6无法访问。 -->
+
+		<!-- <init-param> 访问IP白名单 <param-name>allow</param-name> <param-value>127.0.0.1</param-value> 
+			</init-param> <init-param> 访问IP黑名单 <param-name>deny</param-name> <param-value>127.0.0.1</param-value> 
+			</init-param> -->
+		<init-param>
+			<!-- 用户名 -->
+			<param-name>loginUsername</param-name>
+			<param-value>admin</param-value>
+		</init-param>
+		<init-param>
+			<!-- 密码 -->
+			<param-name>loginPassword</param-name>
+			<param-value>dp123456</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DruidStatView</servlet-name>
+		<url-pattern>/druid/*</url-pattern>
+	</servlet-mapping> 
+	
+	<filter>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>
+		<init-param>
+			<param-name>exclusions</param-name>
+			<param-value>*.js,*.gif,*.jpg,*.png,*.ico,*.css,*.ico,*.jsp,*.eot,*.woff,/druid/*,/download/*</param-value>
+		</init-param>
+		<!-- 监控单个url调用的sql列表 -->
+		<init-param>
+			<param-name>profileEnable</param-name>
+			<param-value>true</param-value>
+		</init-param>
+
+		<!-- 可以关闭session统计功能 -->
+		<!-- <init-param> <param-name>sessionStatEnable</param-name> <param-value>false</param-value> 
+			</init-param> -->
+	</filter>
+	<filter-mapping>
+		<filter-name>DruidWebStatFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	<!-- 配置Druid add by liuxun 20171220 end -->
+
+
+
+
+
+添加数据源
+
+ 	<!-- 数据源配置 -->
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="url" value="${jdbc.url}"/>
+		
+		<!-- 监控数据库 -->
+		<property name="filters" value="stat" />
+		<property name="maxActive" value="32" />
+		<property name="initialSize" value="8"/>
+		<property name="maxWait" value="60000"/>
+		<property name="minIdle" value="4"/>
+		
+		<!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+		<property name="timeBetweenEvictionRunsMillis" value="60000"/>
+		<!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+		<property name="minEvictableIdleTimeMillis" value="25200000"/>
+		
+		<property name="validationQuery" value="SELECT 'x'"/>
+		<property name="testWhileIdle" value="true"/>
+		<property name="testOnBorrow" value="false"/>
+		<property name="testOnReturn" value="false"/>
+		
+		<!--  MySQL不需要做PSCache,只有Oracle/DB2/SQL Server之类支持游标的数据库才需要配置成true 
+		<property name="poolPreparedStatements" value="true"/>
+		<property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+		 -->
+	</bean>
+
+
+properties 中添加
+
+jdbc.driverClassName=com.mysql.jdbc.Driver
+jdbc.url=jdbc:mysql://10.136.15.102:3306/exception?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull
+jdbc.username=dptest
+jdbc.password=111111

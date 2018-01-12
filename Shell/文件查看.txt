@@ -1,0 +1,6 @@
+1. cat 
+
+2. tail 一般用于查看日志文件
+精简命令 tail -2 xx 查看xx文件最后二行 相当于tail -n 2 -f mm
+
+3. more 

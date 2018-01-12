@@ -1,0 +1,2 @@
+export设置只对当前的bash登录session有效，这是存在内存里面的。
+可以放入 /etc/profile 永久生效

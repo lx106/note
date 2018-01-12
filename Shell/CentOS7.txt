@@ -1,0 +1,266 @@
+chown xun:root -R /hah
+chown xun.root -R /hah
+
+PATH=""  可修改path
+ls -ldh /boot/ 显示文件夹自身信息 --time=atime 显示访问时间
+cp /path1/xx /path2/yy 把xx拷贝到 yy下 如果yy不是文件夹 xx拷贝到path2下命名为yy
+cp /path1/xx /path2/ -p 同时复制属性信息（修改时间等）
+cp -u /path1/xx /path2/xx xx更新 覆盖 否则不
+cp xx yy xx如果是快捷方式 yy为拷贝的源文件 加-d 为拷贝快捷方式
+basename /boot/grub/grub.conf 输出 grub.conf
+dirname /boot/grub/grub.conf 输出 /boot/grub
+cat -n /path/xx 适合查看一些小文件 -n添加行编号 和 nl 一样
+tac /path/xx 倒叙查看
+nl -b a /xx
+more /xx 分屏显示
+less /xx  pageup pagedown end home  
+
+tail -f /xx/log 一直监控log文件变化
+
+od -t c /bin/ls 查看二进制文件
+strings /bin/ls 
+umask 权限过滤符
+umask 333 修改umask值
+022 666 777 644 755
+umask -S 显示保留的值 u g ochattr  
+lsattr
+chmod o+t xun/ 除了root,所有者 其他人都无法删除
+chmod 4644 xx chmod 2644 xx chmod 1644 xx
+
+locate xun 显示所有含有xun的路径 -i 不区分大小写
+updatedb 
+find 目录 -属性 属性值
+
+find / -iname -user xun or -group xun xx (-user,-i,-group,-uid)
+不指明路径 为当前路径
+find -size +2M -size -5M 查找大于2M 小于5M的文件
+find -ctime +1 查找创建时间大于一天的文件
+find -cmin -10
+find -newer file1 查找比file1更新的文件
+find -perm 222 根据权限查找 ugo=222
+find -perm +222 只要ugo 中有一个有w权限即可 (或)
+find -perm -222 ugo 都要有 w (与)
+find -perm -2 o一定要有w
+find -perm -2 og一定要有w
+
+
+filefrag -v install.log 
+-------文件压缩
+mount /dev/cdrom/mnt
+gedit /etc/yum.repos.d/aa.repo
+uncompress services.V
+compress -c -v services > services.V
+
+gzip hosts 压缩成了hosts.gz
+zcat hosts.gz
+gzip -d hostz.gz
+gzip -c hosts > hosts.gz
+bzip2 hosts
+bzip2 -d hosts.bz2
+bzip2 -c hosts >hosts.bz2
+bzcap hosts2.bz2
+zip hosts.zip hosts
+unzip hosts.zip
+打包命令
+tar cvf hosts.tar hosts --remove-files
+tar tvf hosts.tar
+tar xvf hosts.tar
+tar xvf hosts.tar -C aa/
+
+cp /etc/services /etc/pssswd /etc/hosts .
+tar xvf xx.tar hosts
+tar zcvf xx.tar.gz * --remove-files
+tar zxvf xx.tar.gz
+tar jcvf xx.tar.bz2 * --remove-files 
+tar jxvf xx.tar.bz2
+-----备份
+差异 增量 全
+fdisk /dev/sda
+partprobe /dev/sda
+mkfs.ext3 /dev/sda3
+mount /dev/sda3 /xx
+dump -0u -f rhce/1.dump /dev/sda2
+----------------
+
+export yy=10 环境变量 特点：会影响到所有子shell
+export yy 
+set 显示所有变量
+export 显示所有环境变量
+export -p 显示所有环境变量
+declare -x zz=10 环境变量
+declare -x zz 取消环境变量zz
+declare +x aa 把aa变成本地变量
+位置变量
+
+
+echo $HISTFILESIZE 
+echo $PS1
+
+PS1="[\u@\h \w]\$"
+echo $PS2
+locale -a 查看系统支持编码
+echo $LANG 查看当前编码
+
+declare -r aa 设置aa只读
+
+ulimit -a 查看所有大小限制
+ulimit -f 20480 设置创建文件最大值限制
+
+r=${xx-"aaaaaa"} xx存在 赋值给r 不存在"aaaaaa"赋值给r
+r=${xx:-"aaaaaa"} xx不为空 赋值给r 不存在"aaaaaa"赋值给r,xx为空 "aaaaaa"赋值给r
+r=${xx:="aaaaaa"} 如果xx 空或不存在 "aaaa"赋给xx 同时赋给r
+r=${xx:?"aaaaaa"} xx没定义或控制 显示aaaaa 作为警告
+r=${xx:+"aaaaaa"} 定义了且非空 "aaaa" 赋值r ，没定义无赋值
+
+ifconfig eth0
+alias aa="ifconfig eth0" 为ifconfig eth0设置别名aa
+alias 查看系统中已有的别名
+unalias aa 取消别名
+
+type -a echo 
+vim /etc/motd
+修改登录前的信息 修改登录后的信息
+ login-shell
+ vim /etc/profile
+.开头文件
+.bash_profile
+
+stty -a 查看终端快捷键
+set -u 开启引用变量前提示变量是否被定义
+set -x 开启
+set +x 关闭
+
+
+ifconfig eth0 | grep 'xx' 过滤命令一结果含有xx
+ifconfig eth0 | tee -a xx | grep 'xx' 
+last 显示用户历史登陆信息
+last | cut -d' ' -f1 xx
+
+grep 关键字 file --color 在file中列出含有 关键字的行
+-i 
+grep 'to\{3,7\}m' xxx --color
+sed -i '1,2d' hosts
+---------------------------------------------------
+shell script
+
+bash xx.sh   打开一个子shell 运行
+source xx.sh 当前shell 下运行
+
+uid gid
+root uid=0 1~499系统用户
+500~65535 
+
+tom:x:501:501::/home/xun:/bin/bash
+cat /etc/shadow
+groups xun 显示用户所属的组
+gpasswd -a tom xun 
+newgrp xun
+ 
+useradd -D 查看创建用户设置的默认值
+vim /etc/default/useradd 创建用户默认值的配置文件
+useradd -c "注释（全称）" -s /sbin/nologin -d /home/tom \（反斜线表示换行）
+-g xun (组) -G xun (会属于二个组,tom,xun) -u 1000(uid) tom
+ 
+usermod -s  /bin/bash tom 修改tom 用户的shell路径
+usermod -c "草拟没" tom
+usermod -h 查看命令帮助文档
+
+passwd tom 修改tom密码
+passwd -S tom 查看tom密码信息（可看加密方式）
+passwd -d tom 清空tom密码
+clear
+
+passwd -l tom 锁定tom用户密码
+passwd -u tom 解锁tom用户
+passwd -x 20 tom 设置tom用户密码过期为20天
+
+userdel -r tom 删除tom 并删除它下的相关文件
+chage -E 2016-06-06 tom 设置密码过期时间
+
+chsh (更改shell)
+chsh -l  查看当前支持哪些shell
+chsh -s /sbin/nologin xun 更改xun用户的shell
+id xun 
+
+--------------20160728------------------
+ACL 访问控制列表 用于单独给某个用户某个组 赋予某个目录某个文件赋予权限
+
+对文件授权
+getfacl xx
+:wq! ！强制退出
+
+setfacl -m u:xun:rw- xx  --modify 对某个用户单独设置权限
+setfacl -x u:liu xx 取消用户liu的权限
+gpasswd -a xun root 将用户bob加入到root组中
+groups bob 
+
+setfacl -m g:tom:rw -xx 
+
+ls -ld rhce/
+对目录授权
+setfacl -m u:xun:rwx rhce/
+getfacl rhce/
+对于目录的不可执行 为不能cd进去
+setfacl -m d:u:xun:rwx rhce/ -d表示default 无论任何用户在rhce目录下创建的文件 xun用户都有rwx权限
+setfacl -x d:u:xun rhce/ 原来xun用户具有的权限 还具有
+
+---------------------------
+用户切换
+su  --switch user
+sudo
+root
+su 用户名 -- 家目录没有切换过去 此时的环境还是root 并没有执行xun下的sh文件
+su - tom -左右都有空格 加入了- 
+root往任何用户切换 都不需要密码
+su - 等于 su - root
+
+su - -c 'mount /dev/cdrom /mnt' 只要输入root密码便能执行
+缺点 一定要知道root 密码
+ 
+
+---------------------------------
+chsh -s /sbin/nologin xun
+---------------------------------
+
+PAM
+telent
+ftp
+ssh
+-------------------磁盘配额Quota--------------------
+fdisk /dev/sda
+p
+n
+3
++500M
+w
+partprobe /dev/sda
+mkfs.ext3 /dev/sda3
+
+----------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
