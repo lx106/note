@@ -5,28 +5,28 @@ db.persons.find()
 db.persons.findOne()
 db.persons.update({name:"liuxun",{$set:{name:"xun"}})
 	
-1.´´½¨Ò»¸öÊı¾İ¿â
+1.åˆ›å»ºä¸€ä¸ªæ•°æ®åº“
 use [datebaseName]
-2.²é¿´ËùÓĞÊı¾İ¿â
+2.æŸ¥çœ‹æ‰€æœ‰æ•°æ®åº“
 show dbs
-3.¸øÖ¸¶¨Êı¾İ¿âÌí¼Ó¼¯ºÏ²¢Ìí¼Ó¼ÇÂ¼
+3.ç»™æŒ‡å®šæ•°æ®åº“æ·»åŠ é›†åˆå¹¶æ·»åŠ è®°å½•
 db.[documentName].insert({...})
-4.²é¿´Êı¾İ¿âÖĞµÄËùÓĞÎÄµµ
+4.æŸ¥çœ‹æ•°æ®åº“ä¸­çš„æ‰€æœ‰æ–‡æ¡£
 show collections
-5.¸üĞÂÎÄµµÊı¾İ
-db.[documentName].update({²éÑ¯Ìõ¼ş},{¸üĞÂÌõ¼ş})
-6.É¾³ıÎÄµµÖĞµÄÊı¾İ	
+5.æ›´æ–°æ–‡æ¡£æ•°æ®
+db.[documentName].update({æŸ¥è¯¢æ¡ä»¶},{æ›´æ–°æ¡ä»¶})
+6.åˆ é™¤æ–‡æ¡£ä¸­çš„æ•°æ®	
 db.persons.remove({name:"liuxun"})
 
-ÃüÁîĞĞÏÂ
+å‘½ä»¤è¡Œä¸‹
 var p = db.persons.findOne();
 db.persons.update({p,{name:"liuxun"}})	
 	
-ÉèÖÃ¹ıÆÚË÷Òı
+è®¾ç½®è¿‡æœŸç´¢å¼•
 db.index.ensureIndex({time:-1},{expireAfterSeconds:30})	
 db.index.insert({time:new Date()})
 	
-È«ÎÄË÷Òı
+å…¨æ–‡ç´¢å¼•
 db.article.ensureIndex({"article":"text"})	
 db.article.insert({"article":"aa bb cc dd ee"})
 db.article.insert({"article":"aa bb cc hh ee"})	
