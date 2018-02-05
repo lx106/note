@@ -1,0 +1,57 @@
+Ctrl+Shift+A
+alt + insert:                         代码生成
+Ctrl+K                                查看提交更改
+Ctrl+Shift+空格:                      例： Department d =  new 此处使用
+Ctrl+W                                content select
+Ctrl+Shift+斜杠                       : /*  */
+Ctrl+斜杠                             : //
+ctrl + F4                              关闭当前窗口
+Ctrl+Shift+Backspace                   (Navigate | Last Edit Location) 
+F3                                     搜索功能 继续按选择到下一个
+Esc                                    关闭当前打开的窗口
+Ctrl+E                                 Recent Files
+F2/Shift+F2                            跳到代码警告处 
+Ctrl+Alt+向上箭头/Ctrl+Alt+向下箭头    被我改为 复制当前行到下一行
+Ctrl+Shift+向上箭头                    选择行 切换上下二行 选择方法 移动方法位置 
+Ctrl+J                                 提示功能
+Alt+向上箭头                           调到下一个方法
+Ctrl+H :                               type hierarchy 查看依赖关系
+Ctrl+B                                 进入当前接口方法定义
+Ctrl+alt+B                             进入当前方法实现类定义
+F6
+Ctrl + N                               查找类名
+Ctrl+Alt+V
+Ctrl+Alt+Shift+N 
+Ctrl+Shift+Enter                        删除当前行多余空格
+Ctrl+Shift+I 
+Ctrl+Alt+Shift+C
+Ctrl+Alt+Shift+S		       打开project structure 可更改jdk 及编译版本
+Alt+Shift+F10			       运行当前代码 / 运行当前junit test方法
+.classpath or .project pom.xml         打开项目
+alt + mouse                            列模式选择
+Ctrl+C                                 如果无内容选择copy当前行
+Ctrl+Tab                               Switcher 
+Ctrl+R                                 搜索/替换功能
+Ctrl+句点
+Ctrl+向下箭头                          替换鼠标查看下面代码
+Alt+F12                                当前项目CMD窗口
+Ctrl+Alt+U                             查看类继承关系
+Ctrl+Alt+Shift+D                       查看更改内容  
+alt + Q
+Shift + mouse
+Alt+Home 
+Alt+F8
+Ctrl+后引号
+Ctrl+Alt+V
+Ctrl+P
+Ctrl+Shift+I
+Ctrl+Alt+F7
+Ctrl+Click 
+Alt+Shift+C
+Ctrl+空格
+Ctrl+Shift+F7 
+Ctrl+Shift+J
+Ctrl+Shift+V
+Alt+F1
+Ctrl+Alt+Home
+
