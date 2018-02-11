@@ -1,0 +1,62 @@
+游标
+CURSOR cursor_name
+ [param_name datatype,...]
+IS select_statement;
+
+1.声明游标
+DECLARE CURSOR cursor_name
+IS select_statement
+2.打开游标
+OPEN cursor_name
+3.读取书籍
+FETCH cursor_name into record_name %ROWCOUNT
+4.关闭游标
+CLOSE cursor_name
+
+示例
+declare
+  cursor pdct_cur
+  is select * from productinfo;
+
+  cur_prodrcd productioninfo%ROWTYPE;;
+
+  begin
+    open pdct_cur;
+       fetch pdct_cur into cur_prodrcd;
+       dbms_output.put_line(cur_prodrcd.id || cur_prodrcd.name);
+  close pdct_cur;
+end;
+
+TYPE PDCT_TAB IS TABLE OF PRODUCTIONINFO%ROWTYPE;
+FETCH pdct_collect_cur BULK COLLECT INTO pdct_rd LIMIT 2;
+
+%ISOPEN 判断游标是否打开
+%FOUND 检测行数据是否有效
+%NOTFOUND 与上相反
+%ROWCOUNT  累计到当前为止fetch到的行数
+
+alter trigger [schema.]trigger disable|enable
+
+
+set serveroutput on
+declare
+
+ c_no emp.empno%type := 7600;
+ c_sal emp.sal%type := 1200;
+ c_rc emp%rowtype;
+
+ cursor cur_1 (id number,price number)
+ IS SELECT * FROM emp
+ where empno > id
+ AND sal > price;
+ 
+begin 
+  open cur_1(c_no,c_sal);
+   loop
+      fetch cur_1 into c_rc;
+      exit WHEN cur_1%notfound;
+      dbms_output.put_line('员工id' || c_rc.empno || '员工姓名' || c_rc.ename);
+   end loop;
+  close cur_1;
+END;
+/

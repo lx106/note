@@ -1,0 +1,55 @@
+var x = 10
+val x =10
+lazy val y = x+ 10
+val x:Int = 10
+Boolean Char Byte Short Int Long Float Double
+val x = true 
+Unit 代表函数
+val u:Unit = ()
+val name:String ="hello"
+val fullname = s"${name} world"
+block
+{expr1;expr2}
+{
+expr1
+expr2
+}
+def functionName(param:ParamType):ReturnType = {
+  body
+}
+def add(x:Int,y:Int)= x+y
+
+Scala 高阶函数
+用函数作为形参或返回值的函数 称为高阶函数
+
+def sum(add: (Int, Int) => Int) = {
+   add(4,4)
+}
+def append() = (name: String) => {"hello " + name}
+匿名函数 Anonymous Function 就是函数常量
+格式： (形参列表) => {函数体}
+
+柯里化
+
+def add(x:Int, y:Int) = x +y
+def add(x:Int)(y:Int) = x +y 
+尾递归
+@annotation.tailrec
+def factorial(n:Int):Int =
+    if(n=1) 1
+    else factorial(n-1)*n
+
+val list = List(1,2,3)
+val list1 = 0::list //   List(0,1,2,3)  
+val list2 = "x"::"y"::"z"::Nil
+val list3 = list:::list1
+list3.head
+list3.tail
+list3.isEmpty
+
+list.filter(x => x%2==1)
+Stream is lazy List
+
+元组 Tupple
+(1,2)
+(1,"liuxun","math",98.5)

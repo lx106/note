@@ -1,0 +1,13 @@
+SELECT segment_name,sum(bytes10241024) 
+FROM dba_segments 
+WHERE owner='C##LIUXUN' Group by segment_name;
+
+查看此用户所占表空间
+
+select a.* from(
+select owner,segment_name,segment_type,(bytes/1024/1024) all_size
+from dba_segments where segment_type='TABLE' 
+order by all_size desc
+) a where rownum<15;
+
+查看系统表所占空间最大的14张表
