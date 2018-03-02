@@ -1,0 +1,5 @@
+create sequence empid_eq
+minvalue 10000000
+maxvalue 90000000
+start with 10000000
+increment by 1

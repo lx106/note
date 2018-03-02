@@ -1,0 +1,183 @@
+chmod u+x 文件名
+
+rpm -qa | grep java 可查看安装的java
+rpm -e --nodeps java-1.8.0-openjdk 卸载 
+rpm -ivh jdk-7u67-linux-i586.rpm
+在/etc/profile的最后加入以下几行： 
+# vi /etc/profile
+export HADOOP_HOME=/root/hadoop121
+export JAVA_HOME=/usr/java/jdk1.8.0_91
+export CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar 
+export PATH=$PATH:$JAVA_HOME/bin:$HADOOP_HOME/bin
+
+# source /etc/profile     ← 使配置生效
+# reboot                    ← 或重启机器配置生效
+mv java-1.8.0 java8 重命名
+
+ssh-keygen -t rsa 生成公私密钥 位于~/.ssh 文件夹中
+id_rsa id_rsa.pub 
+cp ~/.ssh/id_rsa.pub ~/.ssh/authorized_keys
+
+service iptables status 查看防火墙状态
+
+CentOS7 下搭建 hadoop 2.6.4
+环境准备
+1. 操作系统 虚拟机下的centos7 64位
+2. hadoop版本 hadoop-2.6.4.tar.gz
+
+安装和配置步骤具体如下：
+1、主机和ip分配如下
+ip地址              主机名              用途
+192.168.232.131      node1             namenode
+192.168.232.132      node2             datanode
+192.168.232.133      node3             datanode
+192.168.232.134      node4             datanode
+
+hostname 主机名 仅修改当前会话下的hostname
+
+systemctl disable firewalld.service #禁用防火墙
+
+/etc/sysconfig/network 文件添加 hostname=主机名
+
+/etc/sysconfig/network_scripts/ifcfg-eno16777736 文件下配置：
+TYPE=Ethernet
+BOOTPROTO=static #启用静态IP地址
+DEFROUTE=yes
+PEERDNS=yes
+PEERROUTES=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=eno16777736
+UUID=31bf2611-ed78-4cdf-8909-fb64abc16ad2
+DEVICE=eno16777736
+ONBOOT=yes#开启自动启用网络连接
+IPADDR0=192.168.232.131#配置IP地址
+PREFIXO0=255.255.255#设置子网掩码
+GATEWAY0=192.168.232.2#设置网关
+DNS1=8.8.8.8#设置主DNS
+DNS2=8.8.4.4#是指备DNS
+------------------------------------------------
+每台主机配置/etc/hosts 增加ip地址解析 
+192.168.232.131 node1 
+192.168.232.132 node2 
+192.168.232.133 node3 
+192.168.232.134 node4 
+
+配置namenode无密码访问datanode
+export HADOOP_HOME=/home/hadoop (hadoop安装路径)
+export JAVA_HOME=/usr/java/jdk1.8.0_91
+path 要加上:$HADOOP_HOME/bin
+修改hadoop/conf目录下(hadoop1.2.1)
+hadoop-env.sh
+1.修改java_home
+
+core-site.xml
+<configuration>
+     <property>
+         <name>fs.default.name</name>
+         <value>hdfs://node1:9000</value>
+     </property>
+     <property>
+         <name>hadoop.tmp.dir</name>
+         <value>/usr/local/hadoop/temp</value>
+     </property>
+</configuration>
+hdfs-site.xml
+<configuration>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+    <property>
+        <name>dfs.permissions</name>
+        <value>false</value>
+    </property>
+</configuration>
+mapred-site.xml
+<configuration>
+    <property>
+        <name>mapred.job.tracker</name>
+        <value>node1:9001</value>
+    </property>
+</configuration>
+
+
+NameNode - http://node1:50070/
+JobTracker - http://localhost:50030/
+修改windows下的
+C:\Windows\System32\drivers\etc\hosts
+实现windows 主机名访问 hadoop
+
+修改masters 和 slaves
+vim masters
+h1
+vim slaves
+h2 h2 h4
+
+
+对hdfs的操作方式 hadoop fs xxx
+hadoop fs -ls
+hadoop fs -lsr /
+haddop fs -mkdir /xx
+haddop fs -put /xx(linux source) /yy(destination)
+hadoop fs -get /yy(source) /xx(linux destination)
+hadoop fs -text /abc
+hadoop fs -rm /abc
+hadoop fs -rmr /abc
+hadoop 命令提示
+hadoop fs 命令提示
+hadoop fs -help
+hadoop fs -help cp
+hadoop fs -ls hdfs://node1:9000/ 查看指定的服务器
+hadoop dfsadmin -safemode leave
+
+向各个节点复制hadoop
+scp -r ./hadoop121 node2:/home/hadoop121
+scp -r ./hadoop121 node2:/home/hadoop121
+scp -r ./hadoop121 node2:/home/hadoop121
+
+hadoop 2 开始支持windows
+
+对hadoop进行格式化
+hadoop namenode -format
+不能多次格式化
+方法：删除/usr/local/hadoop/tmp 重新格式化
+启动 start-all.sh
+jps 查看进程（java）
+
+------------Hello,World测试--------------
+mkdir input 
+cd input 
+echo "hello world" >test1.txt
+echo "hello hadoop" >test2.txt
+hadoop dfs -put /input in  上次本地文件到 hdfs上
+hadoop dfs -ls ./in/*\
+
+运行hadoop的实例
+hadoop jar /root/hadoop121/hadoop-examples-1.2.1.jar wordcount in out
+统计hadoop文件系统下的in目录的单词数量 结果放入out目录下
+
+hadoop fs test xxx 以文本方式查看hdfs上的文件
+
+如果忘记hadoop命令
+执行 hadoop 会弹出提示
+hadoop fs -put 也会弹出提示
+-- 五个节点
+NameNode --配置在core-site.xml
+SecondaryNameNode --配置在master
+DataNode 配置在slaves 一行代表一个主机
+JobTracker 配置在 mapred-site.xml
+TaskTracker 配置在slaves
+
+-------------hadoop 启动的三种方式
+start-all.sh 从打印信息可以看到启动顺序
+stop-all.sh
+run this on master node
+
+
+

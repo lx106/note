@@ -1,0 +1,4 @@
+sqlplus / as sysdba  从cmd 进入数据库
+shutdown immediate
+startup
+conn / as sysdba 从普通用户登陆root

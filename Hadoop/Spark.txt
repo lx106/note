@@ -1,0 +1,370 @@
+yum install --installroot=/soft/ nc # 可能已经安装了 那么执行下面的命令就可以了
+nc -lk 8888 输入字符串 执行Spark Streaming
+
+
+#################################################
+hadoop-2.6.5+spark-2.1.1-bin-hadoop2.6 集群搭建
++++++++++++++++++++++++++++++++++++++
+CentOS 7 关闭防火墙
+
+1. systemctl stop firewalld.service    #停止firewall
+2. systemctl disable firewalld.service #禁止firewall开机启动
+
++++++++++++++++++++++++++++++++++++++
+安装gcc 
+yum install gcc
+安装 make
+yum install make
+安装JDK
+
+
++++++++++++++++++++++++++++++++++++
+添加Hadoop用户和组
+groupadd hadoop
+useradd hadoop -g hadoop
+passwd hadoop 
+输入hadoop1234  
+
+
+
+++++++++++++++++++++++++++++++++++
+修改IP vi /etc/hosts
+192.168.0.107 hadoop1
+192.168.0.106 hadoop2
+192.168.0.114 hadoop3
+192.168.0.115 hadoop4
+
++++++++++++++++++++++++++++++++++++
+设置各节点免密码登录
+
+1. ssh-keygen -t rsa //生成公私密钥 我以root用户/root目录下 生成在这个文件下/root/.ssh/id_rsa
+
+2. cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys
+
+scp -r /root/.ssh/id_rsa.pub hadoop4:/root/.ssh/authorized_keys
++++++++++++++++++++++++++++++++++++
+安装 hadoop-2.6.5.tar.gz
+tar -zxvf hadoop-2.6.5.tar.gz
+/home/hadoop/hadoop-2.6.5/etc/hadoop
+
+需要修改的文件
+hdfs-site.xml
+hadoop-env.sh
+yarn-site.xml
+
+vi hadoop-env.sh
+修改
+export JAVA_HOME=/root/jdk 
+
+vi yarn-env.sh
+修改
+export JAVA_HOME=/root/jdk 
+
+
+vi slaves # 修改hadoop1(Master) /home/hadoop/hadoop-2.6.5/etc/hadoop/slaves 
+hadoop2
+hadoop3
+hadoop4
+
+配置 vi core-site.xml
+<configuration>
+ <property>
+  <name>fs.defaultFS</name>
+  <value>hdfs://hadooop1:9000</value>
+ </property>
+ <property>
+  <name>io.file.buffer.size</name>
+  <value>131072</value>
+ </property>
+ <property>
+  <name>hadoop.tmp.dir</name>
+  <value>file:/home/hadoop/hadoop-2.6.5/tmp</value>
+  <description>Abasefor other temporary directories.</description>
+ </property>
+ <property>
+  <name>hadoop.proxyuser.spark.hosts</name>
+  <value>*</value>
+ </property>
+<property>
+  <name>hadoop.proxyuser.spark.groups</name>
+  <value>*</value>
+ </property>
+</configuration> 
+
+vi hdfs-site.xml
+mkdir -p /home/hadoop/hadoop-2.6.5/dfs/name
+mkdir -p /home/hadoop/hadoop-2.6.5/dfs/data
+mkdir -p /home/hadoop/hadoop-2.6.5/tmp
+<configuration>
+ <property>
+  <name>dfs.namenode.secondary.http-address</name>
+  <value>hadoop2:9001</value>
+ </property>
+
+  <property>
+   <name>dfs.namenode.name.dir</name>
+   <value>file:/home/hadoop/hadoop-2.6.5/dfs/name</value>
+ </property>
+
+ <property>
+  <name>dfs.datanode.data.dir</name>
+  <value>file:/home/hadoop/hadoop-2.6.5/dfs/data</value>
+  </property>
+
+ <property>
+  <name>dfs.replication</name>
+  <value>3</value>
+ </property>
+
+ <property>
+  <name>dfs.webhdfs.enabled</name>
+  <value>true</value>
+ </property>
+
+</configuration>
+
+mv mapred-site.xml.template mapred-site.xml
+vi mapred-site.xml
+
+<configuration>
+  <property>
+   <name>mapreduce.framework.name</name>
+   <value>yarn</value>
+ </property>
+ <property>
+   <name>mapreduce.map.memory.mb</name>
+   <value>1536</value>
+ </property>
+ <property>
+   <name>mapreduce.map.java.opts</name>
+   <value>-Xmx1024M</value>
+ </property>
+ <property>
+   <name>mapreduce.reduce.memory.mb</name>
+   <value>3072</value>
+ </property>
+ <property>
+   <name>mapreduce.reduce.java.opts</name>
+   <value>-Xmx2560M</value>
+ </property>
+ <property>
+   <name>mapreduce.task.io.sort.mb</name>
+   <value>512</value>
+ </property>
+ <property>
+   <name>mapreduce.task.io.sort.factor</name>
+   <value>100</value>
+ </property>
+ <property>
+   <name>mapreduce.reduce.shuffle.parallelcopies</name>
+   <value>50</value>
+ </property>
+ 
+ <property>
+  <name>mapreduce.jobhistory.address</name>
+  <value>hadoop1:10020</value>
+ </property>
+ <property>
+  <name>mapreduce.jobhistory.webapp.address</name>
+  <value>hadoop1:19888</value>
+ </property>
+ <property>
+  <name>mapreduce.jobhistory.intermediate-done-dir</name>
+  <value>/home/hadoop/hadoop-2.6.5/mr-history/tmp</value>
+ </property>
+ <property>
+  <name>mapreduce.jobhistory.done-dir</name>
+  <value>/home/hadoop/hadoop-2.6.5/mr-history/done</value>
+ </property>
+ 
+</configuration>
+
+vi yarn-site.xml
+
+<configuration>
+  <property>
+   <name>yarn.nodemanager.aux-services</name>
+   <value>mapreduce_shuffle</value>
+  </property>
+  <property>
+   <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
+   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+  <property>
+   <name>yarn.resourcemanager.address</name>
+   <value>hadoop1:8032</value>
+  </property>
+  <property>
+   <name>yarn.resourcemanager.scheduler.address</name>
+   <value>hadoop1:8030</value>
+  </property>
+  <property>
+   <name>yarn.resourcemanager.resource-tracker.address</name>
+   <value>hadoop1:8035</value>
+  </property>
+  <property>
+   <name>yarn.resourcemanager.admin.address</name>
+   <value>hadoop1:8033</value>
+  </property>
+  <property>
+   <name>yarn.resourcemanager.webapp.address</name>
+   <value>hadoop1:8088</value>
+  </property>
+</configuration>
+sbin/hadoop-daemon.sh start journalnode
+格式化namenode
+/bin目录下 
+hdfs namenode -format
+################################################
+namenode的webUI端口：50070 
+yarn的web端口：8088 
+spark集群的web端口：8080 
+spark-job监控端口：4040
+
+spark-env.sh
+
+export HADOOOP_CONF-DIR=/home/hadoop/hadoop-2.6.5/etc/hadooop
+export YARN_CONF_DIR=/home/hadoop/hadoop-2.6.5/etc/hadooop
+
+scp -r /home/hadoop/spark-2.1.1-bin-hadoop2.6 hadoop2:/home/hadoop/spark-2.1.1-bin-hadoop2.6
+
++++++++++++++++++++++++++++++++++++++
+06/13
+
+一个Action 对应一个job 
+一个job 有N个 stage (shffule产生stage)
+窄依赖能够优化 （pipeline）
+一个stage 对应 N个Task
+一条pipeline 一个task
+
+Executor 在worker node 为某应用服务的一个进程
+负责运行任务 并且负责将数据存在内存或磁盘上
+每个应用都有各自独立的Executor
+
+Task 被送到某个executor上的工作单元
+Spark先申请资源
+Hadoop边跑边申请
+
+Application -> main函数-> SparkContext ->
+Driver -> N个Worker ->N Executor -> N Job
+-> N stage -> N Task
+
+SparkContext在初始化的时候 会构造DAGScheduler和TaskScheduler
+DAGScheduler -> job的切分 -> TaskSet ->TaskScheduler
+TaskSet 被打散 -> Master ->Worker -> Executor -> ThreadPool
+->TaskRunner
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+YARN 
+ResourceManager
+NodeManager
+ApllicationManager
+Container
+
+ApllicationManager--->去找 ResourceManager 请求资源
+ResourceManager返回 NodeManager 创建Container 去执行任务
+
+In order to enable this recovery mode, 
+you can set SPARK_DAEMON_JAVA_OPTS 
+in spark-env using this configuration:
+System property	Meaning
+
+spark.deploy.zookeeper.url=192.168.1.101:2181
+spark.deploy.zookeeper.dir=/usr/spark
+
+export SPARK_DAEMON_JAVA_OPTS="-Dspark.deploy.recoveryMode=ZOOKEEPER -Dspark.deploy.zookeeper.node1:2181,node2:2181.."
+
+client 模式提交程序 Driver 就在本机 就能在本机看到执行结果
+cluster 模式提交程序 Driver在 集群当中的某台worker 
+会把结果提交给Driver 所有本机看不到结果
+
+java 代码中把程序提交到standalone 运行
+new SparkConf().setMaster("spark://node2:7077").setAppName("wc");
+                             
+复制配置
+scp -r sparkhome node2:`pwd`
+scp -r sparkhome root@node2:/usr/
+
+spark 单机模式 只需要把 spark 包解压就可以
+
+cp spark-env.sh.template spark-env.sh
+
+worker master 只是一个进程 可能在同一台物理机上
+
+----------------
+Spark 1.6.3 单机安装
+解压文件
+修改spark-env.sh.template -> spark-env.sh
+export SPARK_MASTER_HOST=192.169.0.107
+export SPARK_LOCAL_IP=127.0.0.1
+./bin/spark-submit --class org.apache.spark.examples.SparkPi --master local lib/spark-examples-1.6.3-hadoop2.6.0.jar
+提交任务
+./bin/spark-submit --class org.apache.spark.examplesSparkPi
+                   --master local[1]
+                   ./lib/example.jar 100
+                   
+./bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://hadoop1:7077
+                   
+                   --executor-memory 1G
+                   --total-executor-cores 1
+                   --deploy-mode cluster 默认client
+                   ./lib/example.jar 100                   
+
+-----------------------------
+碰到Action 算子 Spark会把它之前的代码封装成一个job 去执行
+
+当 RDD 需要复用时 可以把RDD缓存起来  
+persist() cache() 方法默认缓存到内存
+
+transformations 延迟执行
+Action 触发执行
+
+hadoop (hdfs, mapredurce,yarn)
+spark (core sql streaming mllib graphx)
+
+
+=================================
+
+应用程序层面
+
+APP
+ |
+job(s) 包含很多任务的并行计算 可以看作和Spark的action 对应
+ |
+stage(s)  一个job 会被拆分很多组任务,每组任务就被称为stage
+
+	master
+	  |
+	worker
+	|        |
+	Executor  Driver(执行任务调度)
+	|
+	Thread pool
+===================================================
+6.15 算子详解
+map 算子 一次处理一个partition 中的一条数据
+mapPartitions 算子 一次处理一个partition中的所有数据
+如果RDD的数据不是特别多 采用mapPartition 可以加快处理速度
+parallelism 默认并行度为2	
+SparkConf.set
+coalesce
+repartition
+workmemory executormemory
++++++++++++++++++++++++++++++++++++++++++
+Read Evaludate Print Loop
+
