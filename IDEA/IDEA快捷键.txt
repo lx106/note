@@ -1,20 +1,10 @@
-postfix 快捷方式 (系统预设 不可编辑)
-100.fori                             for循环
-list.for
-i.sout
-name.field
-i.return
-list.nn
 
 IDEA 调试
 ctrl+f8                               在当前行添加/取消断点
-f8                                    单步运行
 shift+f9                              debug运行
-F9                                    resume program 直接跳到下一个断点 / 运行完程序
 ctrl+shift+f8                         可查看所有断点
 mute breakpoint                       禁止所有断点
 ctrl+shift+f8                         在断点处添加条件 当条件成立才进入断点
-
 alt+f8                                evaluate expression
 list.add("111");                       
 list.add("222");                       当debug到这一行 list中 含有"111",使用此快捷键 可以动态修改list
@@ -23,70 +13,37 @@ alt+f9                                 运行到光标所在行
 在Variable 指定变量上 按F2  可动态修改变量的值
 
 Ctrl+Shift+A
-alt + insert:                         代码生成
-Ctrl+K                                查看提交更改(有git下)
+alt + insert:                          代码生成
+Ctrl+K                                 查看提交更改(有git下)
 Ctrl+Shift+空格:                       例： Department d =  new 此处使用
-Ctrl+W                                content select
-Ctrl+Shift+斜杠                       : /*  */
-Ctrl+斜杠                             : //
-ctrl + F4                              关闭当前窗口
 Ctrl+Shift+Backspace                   (Navigate | Last Edit Location) 
-F3                                     搜索功能 继续按选择到下一个
 Esc                                    关闭当前打开的窗口
-Ctrl+E                                 Recent Files
 F2/Shift+F2                            跳到代码警告处 
 Ctrl+Alt+向上箭头/Ctrl+Alt+向下箭头    被我改为 复制当前行到下一行
 Ctrl+Shift+向上箭头                    选择行 切换上下二行 选择方法 移动方法位置 
-Ctrl+J                                 提示功能
-Alt+向上箭头                           调到下一个方法
-Ctrl+H :                               type hierarchy 查看依赖关系
-Ctrl+B                                 进入当前接口方法定义
-Ctrl+alt+B                             进入当前方法实现类定义
-F6
 Shift+F6                               Refactor | Rename 重构
-Ctrl + N                               查找类名
 Ctrl+Alt+V
-Ctrl+Shift+U                           切换大小写
-Shift+Shitf                            Search Everwhere
 Ctrl+Alt+Shift+N 
 Ctrl+Shift+Enter                       删除当前行多余空格
 Ctrl+Shift+I 
-Ctrl+Shift+Enter                       插入空白行
 Ctrl+Alt+Shift+C
 Ctrl+Alt+Shift+S		       打开project structure 可更改jdk 及编译版本
 Alt+Shift+F10			       运行当前代码 / 运行当前junit test方法
-.classpath or .project pom.xml         打开项目
-alt + mouse                            列模式选择
-Ctrl+C                                 如果无内容选择copy当前行
-Ctrl+Tab                               Switcher 
-Ctrl+R                                 搜索/替换功能
-Ctrl+句点
+
 Ctrl+向下箭头                          替换鼠标查看下面代码
-Alt+F12                                当前项目CMD窗口
-Ctrl+Alt+U                             查看类继承关系
+
 Ctrl+Alt+Shift+D                       查看更改内容  
 Ctrl+Q                                 Quick Documentation
-alt + Q
-Shift + mouse
-Alt+Home 
 Alt+F8
-Ctrl+后引号
 Ctrl+Alt+V
-Ctrl+P
 Ctrl+Shift+I
 Ctrl+Alt+F7
 Ctrl+F2                               关闭运行的程序
 starvation饥饿
-Ctrl+Click 
 Alt+Shift+C
 Ctrl+空格
 Ctrl+Shift+F7 
 Ctrl+Shift+J
-Ctrl+Shift+V
-Alt+F1
-Ctrl+Alt+Home
-Ctrl+O                                (Code | Override Methods).
-Ctrl+I                                (Code | Implement methods).
 
 重命名文件、方法、属性等（rename）：SHIFT+F6
 提取当前选择为变量（extract variable）：CTRL+ALT+V
@@ -101,3 +58,148 @@ Ctrl+I                                (Code | Implement methods).
 重构菜单（refactor for this）：CTRL+T
 
 keymap 中 找到Other -> Fix doc comment  添加自动注释快捷键
+
+################## ctrl+alt ######################
+ctrl + alt + b: 前往光标所在方法的实现处
+ctrl + alt + h: 放在方法上 查看该方法在哪里被调用了
+ctrl + alt + home 可跳转到spring boot 启动类处
+ctrl + alt + l: 格式化代码
+ctrl + alt + enter: 开始新行(当前行的上一行)
+ctrl + Alt + ←: 回退到上一个操作的地方
+ctrl + Alt + →: 前进到下一个操作的地方
+ctrl + alt + s: 打开系统设置 Settings
+ctrl + alt + o: 优化导入，删除无效引用
+ctrl + alt + f11: 切换全屏模式【自定义】
+ctrl + alt + b: 前往光标所在方法的实现处
+ctrl + alt + enter: 开始新行(当前行的上一行)
+ctrl + alt + f11: 切换全屏模式【自定义】
+ctrl + alt + h: 调用层次结构
+ctrl + alt + l: 格式化代码
+ctrl + alt + o: 优化导入，删除无效引用
+ctrl + alt + s: 打开系统设置
+ctrl + Alt + ←: 回退到上一个操作的地方
+ctrl + Alt + →: 前进到下一个操作的地方
+
+################## alt ##########################
+alt + insert: 自动生成(getter、setter、toString 等)
+alt + f1: 弹出层，显示当前文件可选择目标进行跳转
+alt + f2: 弹出层，选择浏览器打开
+alt + f12 以当前项目路径打开CMD窗口
+alt + home: 跳转到导航栏
+alt + q: 弹出层，显示当前类的上下文信息 查看类名
+alt + ← / →: 编辑框框左右切换
+alt + ↑ / ↓: 前往当前光标位置的上一个、下一个方法处
+alt + `: 弹出层，显示vcs 常用操作 
+alt + mouse 列模式选择
+################## ctrl #########################
+ctrl+  . 折叠/打开当前方法 同ctrl + - 
+ctrl + 1,2,3..9: 前往助记键处(对数字助记键有效)
+ctrl + a  全选
+ctrl + b: 前往光标所在的方法、变量定义处(同等于 ctrl + 鼠标左键单击)
+ctrl + c: 如果无选择内容 则copy当前行
+ctrl + d: 复制当前行到下一行
+ctrl + e: 显示最近打开的文件记录列表 / 如果内存不足需要调大
+ctrl + f: 当前文件查找
+ctrl + g: 前往当前文件指定行处
+ctrl + h: 显示当前类的层次结构
+ctrl + i: 实现方法
+ctrl + j: 插入自定义模板
+ctrl + k: 版本控制提交项目
+ctrl + n: 查找 class 文件
+ctrl + o: 重写方法
+ctrl + p: 显示方法参数信息
+ctrl + q: 显示方法、变量的注释文档
+ctrl + r: 当前文件替换 比 ctrl + f 更好用
+ctrl + tab: 编辑窗口切换(按住 ctrl 键，可结合 上下键 + delete 关闭文件)
+ctrl + t: 版本控制更新项目
+ctrl + u: 前往光标所在方法的父类方法、接口定义
+ctrl + w: 递进选择(扩大范围)
+ctrl + x: 剪切光标所在行；剪切选择内容  
+ctrl + y: 删除光标所在行
+ctrl + z：撤销
+ctrl + +: 展开代码
+ctrl + -: 折叠代码
+ctrl + /: 注释代码  //格式 不必再该行开始位置
+ctrl + [: 将光标移动到代码块开始位置
+crtl + ]: 将光标移动到代码块结束位置
+ctrl + F2 关闭运行中的程序
+ctrl + f4: 关闭当前编辑窗口
+ctrl + f11: 使用助记键添加书签；删除书签
+ctrl + f12: 弹出当前文件结构层(可进行输入筛选；快速查找方法等)
+################## shift ########################
+shift + shift 全局查找
+shift + enter: 开始新行(当前行的下一行)
+shift + f2: 前往当前文件上一个错误处
+shift + f3: 在查找模式下，前往上一个匹配处
+shift + f4: 使用新窗口打开当前编辑文件
+shift + f6: 重命名
+shift + f9: debug 启动(同等于工具栏 debug)
+shift + f10: 正常启动(同等于工具栏 run)
+shift + f11: 弹出层，显示书签
+shift + 左键单击: 鼠标点击当前文件 tag 标签，关闭当前文件
+
+################## ctrl+shift ######################
+ctrl + shift + 1,2,3..9: 快速添加助记键书签
+ctrl + shift + a: 查找动作
+ctrl + shift + backspace: 前往上次修改处(类似 eclipse 中的 ctrl + q，实质上有差别)
+ctrl + shift + c: 复制当前文件磁盘路径
+ctrl + shift + e: 弹出层，显示最近修改的文件列表
+ctrl + shift + enter: 完成当前语句(结尾自动补充分号或括号等)
+ctrl + shift + f: 在路径中查找
+ctrl + shift + f7: 高亮显示选择文本及相同文本
+ctrl + shift + f12: 编辑器最大化
+ctrl + shift + h: 显示方法层次结构
+ctrl + shift + i: 弹出层，显示光标所在的方法或类的定义
+ctrl + shift + j: 将下一行合并到当前行末尾
+ctrl + shift + n: 查找文件；后面输入 / 可查找目录
+ctrl + shift + r: 在路径中替换
+ctrl + shift + t: 添加单元测试
+ctrl + shift + v: 弹出层，列出粘贴记录
+ctrl + shift + w: 递进选择(缩小范围)
+ctrl + shift + z: 取消撤销
+ctrl + shift + u: 大小写转换
+ctrl + shift + v: 弹出层，列出最近复制记录
+ctrl + shift + 左键单击: 前往变量、方法等定义处(新窗口打开)
+ctrl + shift + +: 展开所有代码
+ctrl + shift + -: 折叠所有代码
+ctrl + shift + [: 选中从光标所在位置到代码块开始位置
+ctrl + shift + ]: 选中从光标所在位置到代码块结束位置
+ctrl + shift + /: 代码块注释  /**/格式
+
+################## alt+shift ######################
+alt + shift + ↑ / ↑: 上下行调整顺序
+alt + shift + c: 弹出层，列出最近修改列表记录(通过该操作可进行恢复操作，类似于版本管理)
+alt + shift + f9: 弹出层，显示 debug 选择菜单
+alt + shift + f10: 弹出层，显示 run 选择菜单
+############### ctrl+shift+alt ###################
+ctrl + shift + alt + c: 复制参考信息
+ctrl + shift + alt + v: 无格式粘贴
+ctrl + shift + alt + n: 查找变量，方法
+ctrl + shift + alt + s: 打开当前项目设置
+
+
+################## F1~F12 ########################## 
+F1: 帮助文档
+f2: 前往下一个错误处
+F4:
+f3: 在查找模式下，前往下一个匹配处
+F5: copy class
+F6:
+F7:
+f8: debug 下单步运行
+F9  resume program 直接跳到下一个断点 / 运行完程序 (eclipse中的F8)
+F10
+f11: 添加书签
+F12 
+##################################################
+alt + shift + 鼠标左键双击: 点选
+
+
+#####################postfix 快捷方式(系统预设 不可编辑)#############################
+ 
+100.fori                             1-100 for循环
+list.for                             遍历  
+i.sout                               System.out.println(i);    
+name.field                           自动添加成员字段
+i.return                             return i; 
+list.nn                              if(list != null){} 
