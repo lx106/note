@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="name.liuxun.dao.EmployeeMapperPlus">
+   <!--public Employee getEmpById(Integer id);  -->
+   
+  <resultMap type="emp" id="myEmp">
+     <id column="id" property="lastName"/>
+     <result column="last_name" property="email"/>
+     <!-- 其他列会自动封装  -->
+  </resultMap> 
+   <resultMap type="emp" id="myEmp1">
+     <id column="id" property="id"/>
+     <result column="last_name" property="lastName"/>
+     <result column="gender" property="gender"/>
+     <result column="email" property="email"/>
+     <result column="did" property="dept.id"/>
+     <result column="dept_name" property="dept.deptName"/>
+     <!-- 其他列会自动封装  -->
+  </resultMap> 
+  
+  <resultMap type="emp" id="myEmp2">
+     <id column="id" property="id"/>
+     <result column="last_name" property="lastName"/>
+     <result column="gender" property="gender"/>
+     <association property="dept" javaType="name.liuxun.bean.Department">
+       <id column="did" property="id"/>
+       <result column="dept_name" property="deptName"/>
+     </association>
+     <!-- 其他列会自动封装  -->
+  </resultMap> 
+  <select id="getEmpById" resultMap="myEmp" >
+    select * from tbl_employee where id = #{id}
+  </select>
+  <!--public Employee getEmployeeAndDept(Integer id);  -->
+  
+  <select id="getEmployeeAndDept" resultMap="myEmp1">
+    select e.id id,e.last_name last_name,e.gender gender,e.email email,e.d_id d_id,d.id did,d.dept_name dept_name
+    from tbl_employee e left join tbl_dept d on e.d_id = d.id
+    where e.id=#{id}
+  </select>
+  
+  <select id="getEmployeeAndDept2" resultMap="myEmp2">
+    select e.id id,e.last_name last_name,e.gender gender,e.email email,e.d_id d_id,d.id did,d.dept_name dept_name
+    from tbl_employee e left join tbl_dept d on e.d_id = d.id
+    where e.id=#{id}
+  </select>
+  <!--public Employee getEmpByIdStep(Integer id);  -->
+  <resultMap type="name.liuxun.bean.Employee" id="myEmp3">
+     <id column="id" property="id"/>
+     <result column="email" property="email"/>
+     <!-- select :指明当前属性是select查询的结果
+          column :指定将那一列传入select作为参数
+                  支持延迟加载 -->
+     <association property="dept" select="name.liuxun.dao.DepartmentMapper.getDepartment" column="d_id">
+     </association>
+  </resultMap>
+  <select id="getEmpByIdStep" resultMap="myEmp3">
+    select * from tbl_employee where id=#{id}
+  </select>
+  <!--public List<Employee> getEmpsByDid(Integer did);  -->
+  <select id="getEmpsByDid" resultType="name.liuxun.bean.Employee">
+    select * from tbl_employee where d_id=#{did}
+  </select>
+  
+  <resultMap type="name.liuxun.bean.Employee" id="myEmpsByDisc">
+    <!-- column指定要判断的列  javaType column对应的java类型-->
+    <discriminator javaType="string" column="gender">
+        <case value="F" resultType="name.liuxun.bean.Employee">
+           <association property="dept" select="name.liuxun.dao.DepartmentMapper.getDepartment" column="d_id">
+           </association>
+        </case>
+        <case value="M" resultType="name.liuxun.bean.Employee">
+           <result column="email" property="lastName"/>
+        </case>
+    </discriminator>
+  </resultMap>
+  <!--public Employee getEmpsByDisc(Integer id);  -->
+  <select id="getEmpsByDisc" resultMap="myEmpsByDisc">
+    select * from tbl_employee where id = #{id}
+  </select>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>
