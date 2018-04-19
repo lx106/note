@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="name.liuxun.dao.DepartmentMapper">
+   <!--指定和哪个namespace下的缓存一样  -->
+   <cache-ref namespace="name.liuxun.dao.EmployeeMapper"/>
+   <!--public Department getDepartment(Integer id);  -->
+   <select id="getDepartment" resultType="name.liuxun.bean.Department">
+     select id,dept_name deptName from tbl_dept where id=#{id}
+   </select>
+   <!--public Department getDeptAndEmps(Integer id);  -->
+   <resultMap type="name.liuxun.bean.Department" id="deptAndEmps">
+     <id column="id" property="id"/>
+     <!--column="id" 传递单个参数 ，传递多个参数用map  {did=id,gender=gender}-->
+     <collection property="emps" ofType="name.liuxun.bean.Employee"  select="name.liuxun.dao.EmployeeMapperPlus.getEmpsByDid" column="{did=id}" fetchType="eager">
+     </collection>
+   </resultMap>
+   <select id="getDeptAndEmps" resultMap="deptAndEmps">
+     select * from tbl_dept where id=#{id}
+   </select>
+   
+</mapper>

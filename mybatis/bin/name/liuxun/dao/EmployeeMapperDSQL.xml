@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="name.liuxun.dao.EmployeeMapperDSQL">
+  
+  <!--  • if
+		• choose (when, otherwise)
+		• trim (where, set)
+		• foreach  -->
+  <!--public List<Employee> getEmpsByCondition();  -->
+  <select id="getEmpsByCondition" resultType="name.liuxun.bean.Employee">
+     select * from tbl_employee 
+     <trim prefix="where" prefixOverrides="and">
+     <if test="lastName!=null and lastName!= &quot;&quot; ">
+       and last_name = #{lastName}
+     </if>
+     <if test="gender!=null">
+       and gender = #{gender}
+     </if>
+     <if test="email!=null">
+       and email = #{email}
+     </if>
+    </trim>
+     <!--1. 使用where标签  会去掉语句最开始的and
+         2. 加上where 1=1 -->
+  </select>
+  <!--public List<Employee> getEmpsByChoose(Employee e);  -->
+  <select id="getEmpsByChoose" resultType="name.liuxun.bean.Employee">
+     select * from tbl_employee 
+     <where>
+     <choose>
+       <when test="id != null and id !=0">
+         and id = #{id}
+       </when>
+       <when test="lastName != null">
+         and last_name = #{lastName}
+       </when>
+       <otherwise>
+         1=1
+       </otherwise>
+     </choose>
+     </where>
+  </select>
+  <!--public void updateEmp(Employee e);  -->
+  <update id="updateEmp">
+     update tbl_employee 
+      <set>
+        <if test="lastName != null">
+            last_name = #{lastName},
+        </if> 
+        <if test="email != null">
+            email = #{email},
+        </if> 
+     </set>
+     <!-- <trim prefix="set" suffixOverrides=",">
+       <if test="lastName != null">
+            last_name = #{lastName},
+        </if> 
+        <if test="email != null">
+            email = #{email},
+        </if> 
+     </trim> -->
+     where id = #{id}
+  </update>
+  
+  <select id="getEmployeeByIds" resultType="name.liuxun.bean.Employee">
+     select * from tbl_employee 
+     <foreach collection="ids" separator="," item="item" open=" where id in (" close=")">
+         #{item}
+     </foreach>
+  </select>
+   <!--public void updateEmps(@Param("emps")List<Employee> emps);  -->
+   <insert id="insertEmps">
+     <!-- insert into tbl_employee(last_name,email,gender,d_id) values
+     <foreach collection="emps" item="emp" separator=",">
+       (#{emp.lastName},#{emp.email},#{emp.gender},#{emp.dept.id})
+     </foreach> -->
+     
+     <foreach collection="emps" item="emp" separator=";">
+        insert into tbl_employee(last_name,email,gender,d_id) values
+       (#{emp.lastName},#{emp.email},#{emp.gender},#{emp.dept.id})
+     </foreach> 
+       <!-- <foreach collection="emps" item="emp" open="begin" close="end;"> 
+        insert into tbl_employee(last_name,email,gender,d_id) values
+       (#{emp.lastName},#{emp.email},#{emp.gender},#{emp.dept.id});
+      </foreach>  适用于Oracle 批量更新-->
+   </insert>
+   <sql id="columns">id,last_name,gender,email</sql>
+   <select id="testInnerParams" resultType="name.liuxun.bean.Employee">
+       <if test="_parameter!=null">
+        <bind name="_lastName" value="'%'+lastName+'%'"/>
+      </if>
+      <if test="_databaseId='test'">
+        select <include refid="columns"></include> from tbl_employee
+        <if test="_parameter!=null">
+         where last_name like #{_lastName}
+        </if>
+      </if>
+   </select>
+   
+</mapper>
