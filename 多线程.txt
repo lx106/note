@@ -1,0 +1,17 @@
+@RestController
+public class ThreadController {
+
+    @GetMapping("thread")
+    public String thread(){
+        String name = thread2();
+        System.out.println(name);
+        return  Thread.currentThread().getName()+":"+name;
+    }
+
+    @GetMapping("thread2")
+    public String thread2(){
+        return  Thread.currentThread().getName();
+    }
+}
+
+浏览器请求每一个方法会创建新的线程,但是在thread()方法中调用thread2() 是同一个线程
