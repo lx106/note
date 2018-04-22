@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+<script>
+
+    function Person(email) {
+        this.email = email;
+    }
+    Person.prototype.email = '123'
+
+    var p1 = new Person();
+    p1.name = 'liuxun'
+    p1.age = 24
+    alert(Object.keys(p1));
+    alert(Object.keys(Person.prototype));
+
+    /*function is(object,name) {
+        !object.hasOwnProperty(name) && name in object;
+    }
+
+    var obj = new Object();
+    //alert(Object.keys(Object.prototype));
+    obj.id = 1;
+    obj.name = 'andyliu';
+    obj.getName = function () {
+        return this.name;
+    }
+
+    var obj1 = {
+        id : 1,
+        name :"liuxun",
+        getName : function () {
+            return this.name;
+        }
+    }
+    alert(Object.keys(obj1.prototype));
+    alert(obj1.getName())
+    alert(obj.getName());
+
+    var attr = Object.keys(obj1);
+    alert(attr);*/
+
+
+</script>
+</html>

@@ -1,0 +1,23 @@
+
+1. wildcards 通配符
+* 匹配任意数量的字符
++ 匹配制定类及其子类
+.. 一般用户匹配任意数量的子包或参数
+
+2 .&& || ！ 与 或 非
+
+3. designators 指示器
+匹配方法 execution()
+匹配注解 @target(),@args(),@within(),@annotation()
+匹配包/类型 within()
+匹配对象 this(),bean(),target()
+匹配参数 args()
+
+
+@Pointcut("within(com.liuxun..*)")
+com.liuxun包及其子包下的所有方法 (验证)
+
+@Pointcut("within(com.liuxun.Tservice)")
+com.liuxun.Tservice包中所有的方法
+
+@Pointcut("execution(* *..find*(..))")

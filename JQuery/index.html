@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+</body>
+<script>
+
+    function f(x) {
+        var temp = x;
+        return function (a) {
+           return temp += a;
+        }
+    }
+    var k = f(50);
+    alert(k(2));
+    alert(k(2));
+    //bi'bao闭包 一个函数中引用另一个函数的变量
+    /*var name = "andyliu";
+
+
+    var obj = {
+        name: "liuxun",
+        getName: function () {
+            return function () {
+                return this.name;
+            }
+        }
+    };
+    var k = obj.getName();
+    alert(k());*/
+    /*var obj = {
+        name: "liuxun",
+        getName: function () {
+            var that = this;
+            return function () {
+               return that.name;
+            }
+        }
+    };
+    var k = obj.getName();
+    alert(k());*/
+    /*function Person() {
+
+    }
+    var obj = Person.prototype;
+    alert(obj.constructor);
+    obj.id = '1';
+    obj.name= 'liuxun'
+    obj.sayName = function () {
+        alert(this.name);
+    }
+    var p1 = new Person();
+    var p2 = new Person();
+    p1.sayName();
+    p2.sayName();
+    p1.name = 'andyliuxy'
+    p1.sayName()
+    alert(p1.sayName() == p2.sayName())*/
+
+</script>
+</html>
