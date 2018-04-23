@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript">
+
+    var name = "andyliu";
+
+    /*function Person() {
+      alert(this.name)
+    }*/
+    //Person();
+    var obj = {
+        name: "liuxun",
+        getName: function () {
+            var that = this;
+            return function () {
+                that.name;
+            }
+        }
+    };
+    var k = obj.getName();
+    alert(k());
+    //alert(obj.getName()());
+
+
+
+</script>
+<body>
+
+
+</body>
+
+</html>
