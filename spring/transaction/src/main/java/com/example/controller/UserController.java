@@ -5,11 +5,17 @@ import com.example.entity.User;
 import com.example.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 /**
  * <p>
@@ -25,20 +31,11 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
-
-    @GetMapping("/getNoTransactional/{id}")
-    public User getNoTransactional(@PathVariable int id){
-        int count = userService.selectCount(null);
-        System.out.println(count);
-       return userService.getById(1);
-    }
-
-    @GetMapping("/transactional/{id}")
-    @Transactional
+    @GetMapping("/user/{id}")
     public User get(@PathVariable int id){
         int count = userService.selectCount(null);
         System.out.println(count);
-        return userService.getById(1);
+       return userService.getById(1);
     }
 
     /**
@@ -199,15 +196,107 @@ public class UserController {
     }
 
 
-    private void test(){
-        System.err.println();
-        System.err.println();
-        System.err.println();
-        System.err.println();
-        System.err.println();
-        System.err.println();
-        System.err.println();
-        System.err.println();
+    /**
+     * ########################################帅气的分割线###################################
+     DEFAULT(TransactionDefinition.ISOLATION_DEFAULT),
+     READ_UNCOMMITTED(TransactionDefinition.ISOLATION_READ_UNCOMMITTED),
+     READ_COMMITTED(TransactionDefinition.ISOLATION_READ_COMMITTED),
+     REPEATABLE_READ(TransactionDefinition.ISOLATION_REPEATABLE_READ),
+     SERIALIZABLE(TransactionDefinition.ISOLATION_SERIALIZABLE);
+     dirty reads, non-repeatable reads and phantom reads
+     */
+
+
+    @GetMapping("/dirtyRead1")
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_UNCOMMITTED)
+    public User dirtyRead1(){
+        User user = new User();
+        user.setId(6);
+        user.setName("andy");
+        userService.insert2(user);
+        User user1 = userService.getById(6);
+        return user1;
     }
+
+    /**
+     *  样例 20
+     * 可能发生脏读
+     * @return
+     */
+    @GetMapping("/dirtyRead20")
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_UNCOMMITTED)
+    public User dirtyRead20(){
+        User user = new User(6,"andy");
+
+        System.out.println(Thread.currentThread().getName());
+
+        ExecutorService pool = Executors.newFixedThreadPool(7);
+        pool.submit(() -> {
+            userService.insert20(user);
+            System.out.println(Thread.currentThread().getName());
+        });
+        //pool.shutdown();
+        User user1 = userService.getById20(6);
+        return user1;
+    }
+
+    /**
+     *  样例21
+     *  可能发生不可重复读  selectCount21 注解 @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_UNCOMMITTED)
+     *  不可能发生不可重复读 selectCount21
+     */
+    @GetMapping("/nonRepeatable21")
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.READ_UNCOMMITTED)
+    //@Transactional
+    public String nonRepeatable21(){
+
+        int count1 = userService.selectCount21();
+
+        User user = new User(6,"andy");
+
+        ExecutorService pool = Executors.newFixedThreadPool(7);
+        pool.submit(() -> {
+            userService.insert21(user);
+            int count3 = userService.selectCount21();
+            System.out.println(count3);
+
+        });
+        //pool.shutdown();
+
+        try {
+            TimeUnit.SECONDS.sleep(4);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        int count2 = userService.selectCount21();
+        return count1+"-------"+ count2;
+    }
+
+    /**
+     * 脏读 不可重复读 幻读 是针对不同事物之间的概念
+     * SERIALIZABLE 级别最高 容易锁表
+     * @return
+     */
+    @GetMapping("/SERIALIZABLE22")
+    @Transactional(propagation = Propagation.REQUIRED,isolation = Isolation.SERIALIZABLE)
+    public String phantomRead22(){
+
+        int count1 = userService.selectCount22();
+        System.out.println(count1);
+
+        User user = new User(6,"andyliu");
+        userService.insert22(user);
+
+        int count2 = userService.selectCount22();
+        System.out.println(count2);
+
+        User user1 = new User(6,"andyliu");
+        userService.insert22(user1);
+
+        int count3 = userService.selectCount22();
+        System.out.println(count3);
+        return count1+"-------"+ count2 +"-------"+count3;
+    }
+
 }
 
