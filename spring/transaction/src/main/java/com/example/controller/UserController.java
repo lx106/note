@@ -25,11 +25,20 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
-    @GetMapping("/user/{id}")
-    public User get(@PathVariable int id){
+
+    @GetMapping("/getNoTransactional/{id}")
+    public User getNoTransactional(@PathVariable int id){
         int count = userService.selectCount(null);
         System.out.println(count);
        return userService.getById(1);
+    }
+
+    @GetMapping("/transactional/{id}")
+    @Transactional
+    public User get(@PathVariable int id){
+        int count = userService.selectCount(null);
+        System.out.println(count);
+        return userService.getById(1);
     }
 
     /**
