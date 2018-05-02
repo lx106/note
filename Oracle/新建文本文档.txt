@@ -1,0 +1,3 @@
+spool xxx.log
+prompt ../../xxx.sql
+@../../xxx.sql

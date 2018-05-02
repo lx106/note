@@ -1,0 +1,21 @@
+grep test * 在当前目录下的所有文件查找包含字符test的行
+返回状态 0 成功 1 没找到 2 没有这个文件
+grep 'pattern' filenames
+grep -G 'pattern' filenames 基本正则
+grep -E 'pattern' filenames 扩展正则
+grep -F 'pattern' filenames 无正则
+----------基本正则表达式集-------------
+^          ^love           以love开头
+$          love$           以love结束
+.          l..e            l**e
+[]         匹配里面的一个字符 
+[^]        不匹配里面的字符
+\w         [A-Za-z0-9]
+\W         [^A-Za-z0-9]
+----------------扩展集 egrep grep -E ----------------
++           匹配一个或者多个
+?           匹配0或者1个
+x{2}        字符x 重复2次
+x{2,3}      字符x 重复2~3次   
+---------------------
+egrep '^love$'    匹配行 love

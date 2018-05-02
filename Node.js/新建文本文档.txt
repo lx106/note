@@ -1,0 +1,8 @@
+wget https://nodejs.org/dist/v6.10.3/node-v6.10.3-linux-x64.tar.xz
+tar xvJf node-v6.10.3-linux-x64.tar.xz
+mv node-v6.10.3-linux-x64 /usr/local/node-v6
+ln -s /usr/local/node-v6/bin/node /bin/node
+ln -s /usr/local/node-v6/bin/npm /bin/npm
+echo 'export PATH=/usr/local/node-v6/bin:$PATH' >> /etc/profile
+source /etc/profile
+npm install forever -g

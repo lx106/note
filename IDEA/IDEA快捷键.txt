@@ -1,14 +1,11 @@
-win10 快捷键                         win +  上下 可放大缩小网页 /以及隐藏网页
+win10 快捷键      win +  上下 可放大缩小网页 /以及隐藏网页
 　　• 创建新的虚拟桌面：Win + Ctrl + D
 　　• 关闭当前虚拟桌面：Win + Ctrl + F4
 　　• 切换虚拟桌面：Win + Ctrl +左/右 
       alt + tab
 ###############################################################################
-
-
 Ctrl + Alt + 左右                    回到上一次光标所在位置
-
-postfix 快捷方式 (系统预设 不可编辑)
+postfix                              快捷方式 (系统预设 不可编辑)
 100.fori                             for循环
 list.for
 i.sout
@@ -26,41 +23,29 @@ list.add("111");
 list.add("222");                       当debug到这一行 list中 含有"111",使用此快捷键 可以动态修改list
 list.add("333");
 alt+f9                                 运行到光标所在行
-在Variable 指定变量上 按F2  可动态修改变量的值
+在Variable指定变量上 按F2  可动态修改变量的值
 
-Ctrl+Shift+A
 alt + insert:                          代码生成
+----------------------安装git情况下------------------------------
 Ctrl+K                                 查看提交更改(有git下)
+Ctrl+Alt+Shift+D                       查看更改内容  
+----------------------------------------------------
 Ctrl+Shift+空格:                       例： Department d =  new 此处使用
 Ctrl+Shift+Backspace                   (Navigate | Last Edit Location) 
 Esc                                    关闭当前打开的窗口
 F2/Shift+F2                            跳到代码警告处 
-Ctrl+Alt+向上箭头/Ctrl+Alt+向下箭头    被我改为 复制当前行到下一行
-Ctrl+Shift+向上箭头                    选择行 切换上下二行 选择方法 移动方法位置 
-Shift+F6                               Refactor | Rename 重构
-Ctrl+Alt+V
-Ctrl+Alt+Shift+N 
-Ctrl+Shift+Enter                       删除当前行多余空格
-Ctrl+Shift+I 
-Ctrl+Alt+Shift+C
-Ctrl+Alt+Shift+S		       打开project structure 可更改jdk 及编译版本
-Alt+Shift+F10			       运行当前代码 / 运行当前junit test方法
-
-Ctrl+向下箭头                          替换鼠标查看下面代码
-
-Ctrl+Alt+Shift+D                       查看更改内容  
-Ctrl+Q                                 Quick Documentation
+Ctrl+Alt+向上箭头/Ctrl+Alt+向下箭头     被我改为 复制当前行到下一行
+Ctrl+Shift+向上箭头                     选择行 切换上下二行 选择方法 移动方法位置 
+Ctrl+Alt+Shift+S		               打开project structure 可更改jdk 及编译版本
+Alt+Shift+F10			               运行当前代码 / 运行当前junit test方法
+Ctrl+向下箭头                          充当鼠标下滑功能
 Alt+F8
 Ctrl+Alt+V
 Ctrl+Shift+I
 Ctrl+Alt+F7
 Ctrl+F2                               关闭运行的程序
-starvation饥饿
-Alt+Shift+C
-Ctrl+空格
-Ctrl+Shift+F7 
-Ctrl+Shift+J
-
+Alt+Shift+C                           查看最近更改操作
+-------------------
 重命名文件、方法、属性等（rename）：SHIFT+F6
 提取当前选择为变量（extract variable）：CTRL+ALT+V
 提取当前选择为属性（extract field）：CTRL+ALT+F

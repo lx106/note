@@ -1,0 +1,32 @@
+函数
+substr,instr,like,replace,count,regexp_substr
+regexp_like,regexp_instr,regexp_count,regexp_replace 
+lpad
+
+select * from test_002 as of timestamp sysdate - 5/1440;
+select * from test_002 as of scn 20443333
+select * from sys.smon_scn_time t order by t.scn
+select dbms_flashback.get_system_change_number from dual;
+select timestamp_to_scn(sysdate) from dual;
+flashback table xxx to scn/timestamp
+flashback table xxx to before drop rename to xxx 
+
+select ID,NAME,VERSIONS_STARTSCAN,VERSIONS_ENDSCN,VERSIONS_OPERATION,
+VERSIONS_XID from test versions between scn timestamp_to_scn(sysdate-20/1440)
+and timestamp_to_sc(sysdate);
+
+select * from flashback_transaction_query
+
+nested loops 循环嵌套连接
+hash join 哈希连接
+merge sort join排序合并连接
+alter system flush shared_pool
+create table t nologgin parallel 64
+as select rownum x from dual connect by level <= 1000;
+create global temporary table temp_001(
+ org_no varchar2(20)
+)on commit delete rows;
+commit preserve rows;
+
+create global temporay table xxx on commit preserve rows
+as select * from dba_objects
