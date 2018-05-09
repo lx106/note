@@ -1,0 +1,46 @@
+
+
+
+
+
+#--spring.profiles.active=dev program args
+#-Dspring.profiles.active=dev VM args
+user:
+  lastName: 'liuxun \n 利息'
+  age: 24
+  boss: true
+  date: 2017/12/20
+  maps: {k1: v1,k2: v2}
+  list:
+    - lisi
+    - zhangsan
+  dog:
+    name: huahua
+    age: 17
+server:
+  port: 8081
+spring:
+  profiles:
+    active:
+---
+server:
+  port: 8082
+spring:
+  profiles: dev
+---
+server:
+  port: 8083
+spring:
+  profiles: prod
+
+#arrs:
+#   - cat
+#   - dog
+#   - pig
+#arrs2:
+#  id: 1
+#  name: 2
+#user: {id: 1,name: lisi}
+#
+#str: "利息\n"
+#str2: '西丽'
