@@ -5,34 +5,35 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
 /**
  * 
  * @author liuxun
- *  ÓÃÓÚ¶Ô¼¯ºÏ ½øĞĞ ²éÕÒ ¹ıÂË Ó³Éä ÇĞÆ¬ µÈ²Ù×÷
- *  1 ´´½¨Á÷
- *  2 ÖĞ¼ä²Ù×÷
- *  3 ÖÕÖ¹²Ù×÷
+ *  ç”¨äºå¯¹é›†åˆ è¿›è¡Œ æŸ¥æ‰¾ è¿‡æ»¤ æ˜ å°„ åˆ‡ç‰‡ ç­‰æ“ä½œ
+ *  1 åˆ›å»ºæµ
+ *  2 ä¸­é—´æ“ä½œ
+ *  3 ç»ˆæ­¢æ“ä½œ
  */
-public class Ç¿´óµÄStreamAPI {
+public class TestStreamAPI {
 
 	@Test
 	public void test1(){
-		// µÚÒ»ÖÖ·½Ê½  Í¨¹ıCollection ¼¯ºÏÌá¹©µÄ stream() ·½·¨
+		// ç¬¬ä¸€ç§æ–¹å¼  é€šè¿‡Collection é›†åˆæä¾›çš„ stream() æ–¹æ³•
 		List<Employee> emps = new ArrayList<>();
 		Stream<Employee> s1 = emps.stream();
-		// µÚ¶şÖÖ Í¨¹ıArraysµÄ¾²Ì¬·½·¨stream()
+		// ç¬¬äºŒç§ é€šè¿‡Arraysçš„é™æ€æ–¹æ³•stream()
 		Employee[] emps2 = new Employee[10];
 		Stream<Employee> s2 = Arrays.stream(emps2);
-		// µÚÈıÖÖ Í¨¹ı 
+		// ç¬¬ä¸‰ç§ é€šè¿‡ 
 		Stream<Employee> s3 = Stream.of(new Employee(),new Employee());
-		// µÚËÄÖÖ ´´½¨ÎŞÏŞÁ÷ µü´ú
+		// ç¬¬å››ç§ åˆ›å»ºæ— é™æµ è¿­ä»£
 		int x =10;
 		Stream<Integer> s4 = Stream.iterate(x, (y) -> y +2);
 				s4.limit(0)
 				  .forEach(System.out::println);
-		// Éú³É
+		// ç”Ÿæˆ
 		Stream.generate(Math::random).limit(100)
 		      .forEach(System.out::println) ; 	
 		
@@ -42,9 +43,9 @@ public class Ç¿´óµÄStreamAPI {
 			new Employee("liuxun", 24, 9000),
 			new Employee("ww", 23, 7000));
 	@Test
-	public void test2(){ //ÖĞ¼ä²Ù×÷²»»áÖ´ĞĞÈÎºÎ²Ù×÷  Ö»ÓĞÖÕÖ¹²Ù×÷²Å»áÒ»´ÎÖ´ĞĞ ËùÓĞÖĞ¼ä²Ù×÷  Õâ½Ğ×ö ÑÓ³ÙÇóÖµ
+	public void test2(){ //ä¸­é—´æ“ä½œä¸ä¼šæ‰§è¡Œä»»ä½•æ“ä½œ  åªæœ‰ç»ˆæ­¢æ“ä½œæ‰ä¼šä¸€æ¬¡æ‰§è¡Œ æ‰€æœ‰ä¸­é—´æ“ä½œ  è¿™å«åš å»¶è¿Ÿæ±‚å€¼
 		emps.stream().filter((x) -> x.getAge()==23)
-		.limit(2) // limit Îª¶ÌÂ·²Ù×÷
+		.limit(2) // limit ä¸ºçŸ­è·¯æ“ä½œ
 		.distinct()
 		.forEach(System.out::println);
 	}

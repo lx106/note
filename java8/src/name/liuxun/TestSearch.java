@@ -4,9 +4,12 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
+import javax.annotation.Resource;
+
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
-public class ²éÕÒÆ¥Åä   {
+public class TestSearch   {
     
 	List<Employee> emps = Arrays.asList(new Employee("AAA", 30, 8000),
 			new Employee("maozhi", 27, 9000),
@@ -14,9 +17,9 @@ public class ²éÕÒÆ¥Åä   {
 			new Employee("ww", 23, 7000));
 	
 	/**
-	 * allMatch ÊÇ·ñÆ¥ÅäËùÓĞÔªËØ
-	 * anyMatch ÓĞÒ»¸ö¾ÍÎªTrue
-	 * noneMatch ËùÓĞµÄ¶¼²»Æ¥Åä²ÅÎªtrue
+	 * allMatch æ˜¯å¦åŒ¹é…æ‰€æœ‰å…ƒç´ 
+	 * anyMatch æœ‰ä¸€ä¸ªå°±ä¸ºTrue
+	 * noneMatch æ‰€æœ‰çš„éƒ½ä¸åŒ¹é…æ‰ä¸ºtrue
 	 * findFirst 
 	 * findAny
 	 * count
@@ -31,7 +34,7 @@ public class ²éÕÒÆ¥Åä   {
 		if(option.isPresent()){
 			System.out.println(option.get());	
 		}else{
-			System.out.println("Ã»ÓĞ");
+			System.out.println("æ²¡æœ‰");
 		}
 		Optional<Employee> option2 = emps.stream().findAny();
 		System.out.println(option2.get());

@@ -1,5 +1,8 @@
 package name.liuxun;
 
+/**
+ * 计算π
+ */
 public class TestPI {
 
 	public static void main(String[] args) {

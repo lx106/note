@@ -1,9 +1,9 @@
 package name.liuxun1;
 
-import java.lang.reflect.AnnotatedType;
 
-import org.junit.Test;
-
+/**
+ *  java8 支持多个相同注解
+ */
 public class TestAnnotation {
 
 	@MyAnnotation("hello")
@@ -22,10 +22,10 @@ public class TestAnnotation {
 		 
 		 MyAnnotation[] ano= clz.getMethod("test").getAnnotationsByType(MyAnnotation.class);
 		 
-//		 for (MyAnnotation myAnnotation : ano) {
-//			System.out.println(myAnnotation.value());
-//		}
-		//System.out.println(ano);
+		for (MyAnnotation myAnnotation : ano) {
+			System.out.println(myAnnotation.value());
+		}
+		System.out.println(ano);
 		
 	}
 }

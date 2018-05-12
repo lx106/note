@@ -2,7 +2,7 @@ package name.liuxun;
 
 import org.junit.Test;
 
-public class Ïß³ÌJoin·½·¨ {
+public class TestJoin {
 
 	@Test
 	public void test1(){
@@ -17,7 +17,6 @@ public class Ïß³ÌJoin·½·¨ {
 				System.out.println("$$$$"+i);
 			}
 		};
-		
 		r1.run();
 		r2.run();
 	}
@@ -39,6 +38,6 @@ public class Ïß³ÌJoin·½·¨ {
 		t1.start();
 		t1.join();
 		t2.start();
-		// ²¢²»ÊÇ Ïß³ÌÒ»´òÓ¡Íê  È»ºóÔÚ´òÓ¡Ïß³Ì¶ş
+		// å¹¶ä¸æ˜¯ çº¿ç¨‹ä¸€æ‰“å°å®Œ  ç„¶ååœ¨æ‰“å°çº¿ç¨‹äºŒ
 	}
 }

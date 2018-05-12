@@ -1,13 +1,9 @@
 package name.liuxun;
 
-import java.util.Arrays;
-import java.util.DoubleSummaryStatistics;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
 public class TestStream {
@@ -32,7 +28,7 @@ public class TestStream {
 			if(((Employee) e).getAge()==27){
 				return "27";
 			}else{
-				return "非27";
+				return "锟斤拷27";
 			}
 		})));
 	    System.out.println(gp);
@@ -49,7 +45,6 @@ public class TestStream {
 	   double sum = emps.stream().map(Employee::getSalary).reduce(0.0,(x,y)-> x += y);
 	   System.out.println(sum);
 	   
-	   // collect 将流转换为其他形式，接收一个Collector 接口的实现  提起Stream 中的元素做汇总
 	   //List<String> list = emps.stream().map(Employee::getName).collect(Collectors.toList());
 	   Set<String> set = emps.stream().map(Employee::getName).collect(Collectors.toSet());
 	   System.out.println(set);
@@ -71,19 +66,19 @@ public class TestStream {
 			new Employee("EEE", 24, 9000),
 			new Employee("FFF", 24, 9000),
 			new Employee("GGG", 23, 7000) );
-	@Test //collect()收集器
+	@Test
 	public void test1(){
-	 //List<String> list = emps.stream().map(Employee::getName).collect(Collectors.toList());
-//	 for (String string : list) {
-//		System.out.println(string); 
-//	 }
+	 List<String> list = emps.stream().map(Employee::getName).collect(Collectors.toList());
+	 for (String string : list) {
+		System.out.println(string);
+	 }
 	 
-//	 HashMap<String, Integer> mmap = new HashMap<>();
-//	 emps.stream().map((x) ->{
-//		mmap.put(x.getName(), 1);
-//		return mmap;
-//	 });
-//	 System.out.println(mmap);
+	 HashMap<String, Integer> mmap = new HashMap<>();
+	 emps.stream().map((x) ->{
+		mmap.put(x.getName(), 1);
+		return mmap;
+	 });
+	 System.out.println(mmap);
 	 
 	}
 	

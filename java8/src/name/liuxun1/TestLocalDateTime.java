@@ -11,16 +11,12 @@ import java.time.ZoneOffset;
 
 import org.junit.Test;
 /**
- * 
- * @author liuxun
- * 
- * Ê±¼ä´Á Instant
- * Ê±¼äÀà    LocalTime LocalDate LocalDateTime
+ *  å…¨æ–°çš„æ—¥æœŸï¼Œæ—¶é—´ç±»
+ *Instant LocalTime LocalDate LocalDateTime Duration
  */
 public class TestLocalDateTime {
 
-	// Duration
-	@Test 
+	@Test
 	public void test1(){
 		LocalDateTime l1 =LocalDateTime.of(2018, 8, 8, 8, 8, 8);	
 		LocalDateTime l2 =LocalDateTime.of(2019, 9, 9, 9, 10, 9);	
@@ -37,13 +33,13 @@ public class TestLocalDateTime {
 	
 	@Test
 	public void test(){
-		Instant i = Instant.now(); //Ä¬ÈÏ»ñÈ¡UTC Ê±Çø
+		Instant i = Instant.now();
 		System.out.println(i);
 		
-		OffsetDateTime odt = i.atOffset(ZoneOffset.ofHours(8)); //»ñÈ¡ÖÐ¹úÊ±Çø
+		OffsetDateTime odt = i.atOffset(ZoneOffset.ofHours(8));
 		System.out.println(odt);
 		
-		System.out.println(i.toEpochMilli()); //Ê±¼ä´Á
+		System.out.println(i.toEpochMilli());
 		
 		Instant j = Instant.ofEpochMilli(1000);
 		System.out.println(j.toEpochMilli());

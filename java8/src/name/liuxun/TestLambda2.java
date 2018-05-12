@@ -8,38 +8,12 @@ import java.util.function.Consumer;
 import java.util.stream.Stream;
 
 
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
-/**
- * 
- * @author liuxun
- * java8 中引入了     “->”  操作符 也叫做Lambda 表达式操作符
- * 
- * 操作符   左边  参数列表
- * 操作符   右边  函数体
- * 
- * 语法格式一   无参数  无返回值
- *         ()  ->  System.out.println("hh");
- *         
- * 语法格式二  一个参数  无返回值       Consumer<T>   
- * 
- *         (t)  ->  System.out.println(t);   -- 一个参数小括号可以不写
- * 语法格式三   多个参数   函数体中有多行  有返回值  
- *        (x,y) -> {
-				System.out.println("Lambda体有多行时 使用{}");
-				return x -y;
-		     };
-		  如果函数体只有一行, 可以省略{}  并且可以省略 return 语句        
-		 可以省略参数类型   原于编译器能通过上下文推断数据类型 
-	
-	Lambda 表达式 需要函数式接口的支持  函数式接口 也就是接口中只有一个抽象方法 使用标签@FunctionalInterface修饰 可以检查函数式接口      
- */         
+
 public class TestLambda2 {
-    
-	/*
-	 * 自然排序 Comparable 实现该接口的有 String Integer Character Double 等
-	 * 定制排序 Comparator 
-	 * */
+
 	@Test
 	public void test9(){
 		 //emps.stream().sorted().forEach(System.out::println);
@@ -108,14 +82,14 @@ public class TestLambda2 {
 		Runnable r = new Runnable() {
 			@Override
 			public void run() {
-				System.out.println("无参数 无返回值");
+				System.out.println("????? ??????");
 				//System.out.println(num);
 			}
 		};
 		r.run();
 		System.out.println("---------------------------");
 		
-		Runnable r2 = () -> System.out.println("无参数 无返回值");
+		Runnable r2 = () -> System.out.println("????? ??????");
 		r2.run();
 		//System.out.println(num++);
 	}
@@ -129,17 +103,17 @@ public class TestLambda2 {
 	public void test1(){
 		Consumer<String> consumer = x -> System.out.println(x);
 		//Consumer<String> consumer = (x) -> System.out.println(x);
-		consumer.accept("江南");
+		consumer.accept("????");
 	}
 	@Test
 	public void test2(){
 		
 //		Comparator<Integer> cp = (x,y) -> {
-//			System.out.println("Lambda体有多行时 使用{}");
+//			System.out.println("Lambda???卸???? ???{}");
 //			return x -y;
 //		};
 		Comparator<Integer> cp = (Integer x,Integer y) -> {
-			System.out.println("Lambda体有多行时 使用{}");
+			System.out.println("Lambda???卸???? ???{}");
 			return x -y;
 		};
 		
@@ -147,8 +121,8 @@ public class TestLambda2 {
 	public void test5(){
 		String[] str = {"A","B"}; 
 //		String[] str1 = null;
-//		str1 = {"A","B"};  这段代码会报错  因为不能类型推断
-		List<String> list = new ArrayList<>(); // 因为类型推断  这里可以不写 ，对于类型推断 Java8 以前的版本可能不支持
+//		str1 = {"A","B"};
+		List<String> list = new ArrayList<>();
 	}
 	@Test
 	public void test6(){

@@ -1,13 +1,13 @@
 package name.liuxun;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
-public class Lambda≤‚ ‘ {
+public class Test1 {
 
 	List<Employee> emps = Arrays.asList(new Employee("AAA", 30, 8000),
 										new Employee("EEE", 27, 9000),

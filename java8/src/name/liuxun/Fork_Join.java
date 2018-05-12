@@ -7,12 +7,15 @@ import java.util.concurrent.ForkJoinTask;
 import java.util.concurrent.RecursiveTask;
 import java.util.stream.LongStream;
 
+/**
+ * fork join æµ‹è¯•
+ */
 public class Fork_Join extends RecursiveTask<Long>{
 
 	private static final long serialVersionUID = 1L;
-	private long start;                   //¿ªÊ¼Öµ
-	private long end;                     //½áÊøÖµ
-	private static long threshold = 10000;  //ÁÙ½çÖµ
+	private long start;                   //å¼€å§‹å€¼
+	private long end;                     //ç»“æŸå€¼
+	private static long threshold = 10000;  //ä¸´ç•Œå€¼
 	
 	public Fork_Join(long start, long end) {
 		super();
@@ -33,11 +36,11 @@ public class Fork_Join extends RecursiveTask<Long>{
 			Fork_Join fk1 = new Fork_Join(start, mid);
 			Fork_Join fk2 = new Fork_Join(mid+1, end); 
 			
-			fk1.fork();  // fork ²ğ·Ö¸üĞ¡µÄÈÎÎñ
+			fk1.fork();  // fork æ‹†åˆ†æ›´å°çš„ä»»åŠ¡
 			fk2.fork();
 			
-		return fk1.join() + fk2.join(); // join ¶Ô Fork_Join(start,end).compute() Õâ´ÎÈÎÎñ
-		                                // ²ğ·ÖµÄ¶ş¸öĞ¡ÈÎÎñÍ³¼Æ
+		return fk1.join() + fk2.join(); // join å¯¹ Fork_Join(start,end).compute() è¿™æ¬¡ä»»åŠ¡
+		                                // æ‹†åˆ†çš„äºŒä¸ªå°ä»»åŠ¡ç»Ÿè®¡
 	}
    }
   
@@ -46,16 +49,16 @@ public class Fork_Join extends RecursiveTask<Long>{
 	   /*Instant start = Instant.now();
 	   long sum = new Fork_Join(1L, 10000000000L).compute(); 
 	   Instant end = Instant.now();
-	   System.out.println(sum +"  fork/joinºÄÊ±£º"+Duration.between(start, end).toMillis());
+	   System.out.println(sum +"  fork/joinè€—æ—¶ï¼š"+Duration.between(start, end).toMillis());
        */
-	   // ¼ÓÈëÏß³Ì³ØÖ´ĞĞ
+	   // åŠ å…¥çº¿ç¨‹æ± æ‰§è¡Œ
 	   ForkJoinPool pool = new ForkJoinPool();
 	   ForkJoinTask<Long> task = new Fork_Join(1L, 10000000000L);
 	  
 	   Instant start = Instant.now();
 	   long sum = pool.invoke(task);
 	   Instant end = Instant.now();
-	   System.out.println(sum +"  fork/joinºÄÊ±£º"+Duration.between(start, end).toMillis());
+	   System.out.println(sum +"  fork/joinè€—æ—¶ï¼š"+Duration.between(start, end).toMillis());
 
 	   
 	   Instant start2 = Instant.now();
@@ -64,17 +67,17 @@ public class Fork_Join extends RecursiveTask<Long>{
 		   sum2 += i;
 	   }
 	   Instant end2 = Instant.now();
-	   System.out.println(sum2 +"  forÑ­»·ºÄÊ±£º"+Duration.between(start2, end2).toMillis());
+	   System.out.println(sum2 +"  forå¾ªç¯è€—æ—¶ï¼š"+Duration.between(start2, end2).toMillis());
 	   
 	   
-	   // Ê¹ÓÃ java8 API 
+	   // ä½¿ç”¨ java8 API 
 	   Instant start3 = Instant.now();
 	   long sum3 = 0;
 	   sum3 = LongStream.rangeClosed(1L, 10000000000L)
 			   .parallel()
 			   .reduce(0,Long::sum);
 	   Instant end3 = Instant.now();
-	   System.out.println(sum3 +"  java8API²¢ĞĞ¼ÆËã£º"+Duration.between(start3, end3).toMillis());
+	   System.out.println(sum3 +"  java8APIå¹¶è¡Œè®¡ç®—ï¼š"+Duration.between(start3, end3).toMillis());
 	   
    }
 }

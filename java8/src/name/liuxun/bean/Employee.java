@@ -1,4 +1,4 @@
-package name.liuxun;
+package name.liuxun.bean;
 
 public class Employee {
 

@@ -6,9 +6,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
-public class Á·Ï°   {
+public class Test10  {
 
 	@Test
 	public void test2(){

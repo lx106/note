@@ -31,7 +31,10 @@ public class Java8 {
 
 	@Test
 	public void test1(){
-	  happy(50L, (d) -> System.out.println("������consumer �� ;"+d));	
+	  happy(50L, (d) -> System.out.println("消费了"+d));
+	}
+	public void happy(double money,Consumer<Double> consumer){
+		consumer.accept(money);
 	}
 	@Test
 	public void test2(){
@@ -52,9 +55,7 @@ public class Java8 {
 		}
 	}
 	
-	public void happy(double money,Consumer<Double> consumer){
-		consumer.accept(money);
-	}
+
 	public int suport(Supplier<Integer> sup){
 		return sup.get();
 	}

@@ -1,5 +1,5 @@
 package name.liuxun;
-//浜ゆ槗绫�
+
 public class Transaction {
 
 	private Trader trader;

@@ -8,7 +8,7 @@ import java.time.temporal.TemporalAdjusters;
 
 import org.junit.Test;
 
-public class 时间矫正器  {
+public class TestTemporalAdjusters {
 
 	@Test
 	public void test(){
@@ -24,8 +24,6 @@ public class 时间矫正器  {
 		LocalDateTime ldt4 = ldt3.with(TemporalAdjusters.next(DayOfWeek.FRIDAY));
 		System.out.println(ldt4);
 		
-		System.out.println("=====");
-		// 自定义下一个结婚纪念日
 		ldt4.with((x) -> {
 			LocalDateTime t = (LocalDateTime) x;
 			return t.plusDays(20);

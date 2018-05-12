@@ -4,10 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
-import java.util.TreeSet;import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.stream.Stream;
+import java.util.TreeSet;
 
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
 public class TestLambda {
@@ -33,9 +32,7 @@ public class TestLambda {
 										new Employee("liuxun", 24, 9000),
 										new Employee("ww", 23, 7000));
 	
-	
-	//传统过滤集合方式  存在缺陷 如果有新需求 添加过滤条件 工资大于等于9000 这时候要么改这个方法 要么添加新方法
-	//例如淘宝 客户查询东西的过过滤条件多变
+
 	public List<Employee> getEmpsByAge(List<Employee> list){
 		Comparator<Employee> cp = (x,y) -> x.getAge() - y.getAge();
 		List<Employee> emps = new ArrayList<Employee>();
@@ -53,7 +50,7 @@ public class TestLambda {
 			System.out.println(employee);
 		}		 
 	}
-	// 这种方式 就要写很多的接口实现类
+	//
 	@Test
 	public void test4(){
 		
@@ -82,7 +79,7 @@ public class TestLambda {
 		return list;
 	}
 	
-	@Test //优化方式一 使用策略模式
+	@Test
 	public void test5(){
 		
 		List<Employee> list = getEmps4(emps,new MyPredicate<Employee>() {
@@ -98,12 +95,12 @@ public class TestLambda {
 			System.out.println(employee);
 		}
 	}
-	@Test //优化方式二 Lambda表达式
+	@Test
 	public void test6(){
 		List<Employee> list = getEmps4(emps, (e) -> e.getAge() ==30);
 		list.forEach(System.out::println);
 	}
-	@Test // 优化方式三 Stream API 
+	@Test
 	public void test8(){
 //		Stream<Employee> list = emps.stream().filter((e) -> e.getSalary()==9000);
 //		list.forEach(System.out::println);  

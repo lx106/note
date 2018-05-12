@@ -7,27 +7,24 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
+import name.liuxun.bean.Employee;
 import org.junit.Test;
 
 /**
  * 
  * @author liuxun
- * 方法引用   如果你要实现的Lamba体中的方法内容    与已经有的方法 内容相同 
+ * 方法引用   如果你要实现的Lamba体中的方法内容与已经有的方法 内容相同
  * 则可以引用 已经实现的方法
  * 方法返回值类型 以及参数类型要一致
- * 
  * 三种语法格式
- * 
  * 对象：： 实例方法名
  * 类：： 静态方法名
  * 类：：实例方法名
- *
  * 构造器 引用
- * 
  * 数组引用
  *
  */
-public class 方法引与构造器引用 {
+public class TestConsructor {
 
 	@Test // 数组引用
 	public void test6(){

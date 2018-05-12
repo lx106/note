@@ -2,7 +2,7 @@ package name.liuxun;
 
 import java.util.HashMap;
 
-public class ²âÊÔÄÚ´æĞ¹Â©  {
+public class TestMemoryLeak  {
 
 	public static void main(String[] args) {
       HashMap<Object, Object> map = new HashMap<Object,Object>();

@@ -30,7 +30,7 @@ public class TestTransaction {
 		);
 	}
 	
-	//1. 鎵惧嚭2011骞村彂鐢熺殑鎵�鏈変氦鏄擄紝 骞舵寜浜ゆ槗棰濇帓搴忥紙浠庝綆鍒伴珮锛�
+	//1.
 	@Test
 	public void test1(){
 		transactions.stream()
@@ -39,7 +39,7 @@ public class TestTransaction {
 					.forEach(System.out::println);
 	}
 	
-	//2. 浜ゆ槗鍛橀兘鍦ㄥ摢浜涗笉鍚岀殑鍩庡競宸ヤ綔杩囷紵
+	//2.
 	@Test
 	public void test2(){
 		transactions.stream()
@@ -48,7 +48,7 @@ public class TestTransaction {
 					.forEach(System.out::println);
 	}
 	
-	//3. 鏌ユ壘鎵�鏈夋潵鑷墤妗ョ殑浜ゆ槗鍛橈紝骞舵寜濮撳悕鎺掑簭
+	//3.
 	@Test
 	public void test3(){
 		transactions.stream()
@@ -59,7 +59,7 @@ public class TestTransaction {
 					.forEach(System.out::println);
 	}
 	
-	//4. 杩斿洖鎵�鏈変氦鏄撳憳鐨勫鍚嶅瓧绗︿覆锛屾寜瀛楁瘝椤哄簭鎺掑簭
+	//4.
 	@Test
 	public void test4(){
 		transactions.stream()
@@ -95,7 +95,7 @@ public class TestTransaction {
 		return list.stream();
 	}
 	
-	//5. 鏈夋病鏈変氦鏄撳憳鏄湪绫冲叞宸ヤ綔鐨勶紵
+	//5.
 	@Test
 	public void test5(){
 		boolean bl = transactions.stream()
@@ -105,7 +105,7 @@ public class TestTransaction {
 	}
 	
 	
-	//6. 鎵撳嵃鐢熸椿鍦ㄥ墤妗ョ殑浜ゆ槗鍛樼殑鎵�鏈変氦鏄撻
+	//6.
 	@Test
 	public void test6(){
 		Optional<Integer> sum = transactions.stream()
@@ -117,7 +117,7 @@ public class TestTransaction {
 	}
 	
 	
-	//7. 鎵�鏈変氦鏄撲腑锛屾渶楂樼殑浜ゆ槗棰濇槸澶氬皯
+	//7.
 	@Test
 	public void test7(){
 		Optional<Integer> max = transactions.stream()
@@ -127,7 +127,7 @@ public class TestTransaction {
 		System.out.println(max.get());
 	}
 	
-	//8. 鎵惧埌浜ゆ槗棰濇渶灏忕殑浜ゆ槗
+	//8.
 	@Test
 	public void test8(){
 		Optional<Transaction> op = transactions.stream()
