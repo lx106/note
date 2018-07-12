@@ -2,7 +2,6 @@ win10 快捷键 win +  上下 可放大缩小网页 /以及隐藏网页
 创建新的虚拟桌面：Win + Ctrl + D
 关闭当前虚拟桌面：Win + Ctrl + F4
 切换虚拟桌面：Win + Ctrl +左/右 
-alt + tab
 ###################IDEA 调试的快捷键######################################
 ctrl+f8                               在当前行添加/取消断点
 shift+f9                              debug运行
@@ -22,7 +21,7 @@ Ctrl+Alt+Shift+D                       查看更改内容
 Ctrl+Shift+空格:                       例： Department d =  new 此处使用
 Ctrl+Shift+Backspace                   (Navigate | Last Edit Location) 
 Esc                                    关闭当前打开的窗口
-F2/Shift+F2                            跳到代码警告处 
+F2                                      跳到代码警告,错误处 
 Ctrl+Alt+向上箭头/Ctrl+Alt+向下箭头     被我改为 复制当前行到下一行
 Ctrl+Shift+向上箭头                     选择行 切换上下二行 选择方法 移动方法位置 
 Ctrl+Alt+Shift+S		               打开project structure 可更改jdk 及编译版本
@@ -39,8 +38,8 @@ ctrl + alt + h: 放在方法上 查看该方法在哪里被调用了
 ctrl + alt + home 可跳转到spring boot 启动类处
 ctrl + alt + l: 格式化代码
 ctrl + alt + enter: 开始新行(当前行的上一行)
-ctrl + Alt + ←: 回退到上一个操作的地方
-ctrl + Alt + →: 前进到下一个操作的地方
+ctrl + alt + ←: 回退到上一个操作的地方
+ctrl + alt + →: 前进到下一个操作的地方
 ctrl + alt + s: 打开系统设置 Settings
 ctrl + alt + o: 优化导入，删除无效引用
 ctrl + alt + f11: 切换全屏模式【自定义】
@@ -54,6 +53,7 @@ ctrl + alt + s: 打开系统设置
 ctrl + Alt + ←: 回退到上一个操作的地方
 ctrl + Alt + →: 前进到下一个操作的地方
 ################## alt ##########################
+alt + 1 project视图关闭
 alt + insert: 自动生成(getter、setter、toString 等)
 alt + f1: 弹出层，显示当前文件可选择目标进行跳转
 alt + f2: 弹出层，选择浏览器打开
@@ -64,6 +64,7 @@ alt + ← / →: 编辑框框左右切换
 alt + ↑ / ↓: 前往当前光标位置的上一个、下一个方法处
 alt + `: 弹出层，显示vcs 常用操作 
 alt + mouse 列模式选择
+alt + v 然后 Enter Presentation Mode 进入全屏
 ################## ctrl #########################
 ctrl+  . 折叠/打开当前方法 同ctrl + - 
 ctrl + 1,2,3..9: 前往助记键处(对数字助记键有效)
@@ -75,18 +76,18 @@ ctrl + e: 显示最近打开的文件记录列表 / 如果内存不足需要调�
 ctrl + f: 当前文件查找
 ctrl + g: 前往当前文件指定行处
 ctrl + h: 显示当前类的层次结构
-ctrl + i: 实现方法
+ctrl + i: 实现父类,接口方法
 ctrl + j: 插入自定义模板
 ctrl + k: 版本控制提交项目
 ctrl + n: 查找 class 文件
-ctrl + o: 重写方法
-ctrl + p: 显示方法参数信息
+ctrl + o: 重写父类方法
+ctrl + p: 方法参数提示
 ctrl + q: 显示方法、变量的注释文档
 ctrl + r: 当前文件替换 比 ctrl + f 更好用
 ctrl + tab: 编辑窗口切换(按住 ctrl 键，可结合 上下键 + delete 关闭文件)
 ctrl + t: 版本控制更新项目
 ctrl + u: 前往光标所在方法的父类方法、接口定义
-ctrl + w: 递进选择(扩大范围)
+ctrl + w: 递进选择(扩大范围) 结合alt+j 可重构
 ctrl + x: 剪切光标所在行；剪切选择内容  
 ctrl + y: 删除光标所在行
 ctrl + z：撤销
@@ -116,7 +117,7 @@ ctrl + shift + a: 查找动作
 ctrl + shift + backspace: 前往上次修改处(类似 eclipse 中的 ctrl + q，实质上有差别)
 ctrl + shift + c: 复制当前文件磁盘路径
 ctrl + shift + e: 弹出层，显示最近修改的文件列表
-ctrl + shift + enter: 完成当前语句(结尾自动补充分号或括号等)
+ctrl + shift + enter: 完成当前语句(结尾自动补充分号或括号,if收尾)
 ctrl + shift + f: 在路径中查找
 ctrl + shift + f7: 高亮显示选择文本及相同文本
 ctrl + shift + f12: 编辑器最大化
@@ -158,7 +159,7 @@ f8:   debug 下单步运行
 F9:   resume program 直接跳到下一个断点 / 运行完程序 (eclipse中的F8)
 F10:  点击导航栏下File选项
 F11:  添加书签
-F12:  定位当前文件
+F12:  选中project中的文件
 #####################postfix 快捷方式(系统预设 不可编辑)#############################
 ctrl + alt + s 输入 postfix 可查看所有的快捷方式
 100.fori                             1-100 for循环
@@ -170,3 +171,13 @@ list.nn                              if(list != null){}
 
 -Xms1024m -Xmx1024m -XX:+PrintGCDetails
 -Xms1m -Xmx8m -XX:+HeapDumpOnOutOfMemoryError
+
+##################################################
+alt+v 弹出view 关闭navigation bar ,如果需要查看 alt+home 可弹出
+
+alt+F1 -> 选第一个,快速定位当前类
+
+如果你依稀记得某个方法名字几个字母，想在IDEA里面找出来，可以怎么做呢？ 
+直接使用ctrl+shift+alt+n，使用symbol来查找即可。 
+
+如果你记得某个业务类里面有某个方法，那也可以使用首字母找到类,然后加个.，再输入方法名字也是可以的

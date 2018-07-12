@@ -1,0 +1,11 @@
+start nginx 启动
+nginx -s stop 关闭
+nginx -s reload 重启
+
+ip_hash 粘性session
+缺点 某个应用重启导致session丢失，没有使用到nginx 特性
+
+session复制 
+缺点
+
+nginx -t   #测试配置是否有语法错误

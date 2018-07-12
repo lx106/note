@@ -1,45 +1,45 @@
 
 
-ËÄÖÖgitµÄĞ­Òé
-±¾µØ´«Êä£¬SSH Ğ­Òé£¬Git Ğ­ÒéºÍ HTTP Ğ­Òé¡£
+å››ç§gitçš„åè®®
+æœ¬åœ°ä¼ è¾“ï¼ŒSSH åè®®ï¼ŒGit åè®®å’Œ HTTP åè®®ã€‚
 #######################################################
-rebase °ÑÔÚÒ»¸ö·ÖÖ§ÀïÌá½»µÄ¸Ä±äÒÆµ½ÁíÒ»¸ö·ÖÖ§ÀïÖØ·ÅÒ»±é¡£
+rebase æŠŠåœ¨ä¸€ä¸ªåˆ†æ”¯é‡Œæäº¤çš„æ”¹å˜ç§»åˆ°å¦ä¸€ä¸ªåˆ†æ”¯é‡Œé‡æ”¾ä¸€éã€‚
 
-merge ²Ù×÷ »á½øĞĞÈı·½ºÏ²¢ ¶ş¸ö·ÖÖ§£¬ÒÔ¼°ËûÃÇµÄ×æÏÈ
+merge æ“ä½œ ä¼šè¿›è¡Œä¸‰æ–¹åˆå¹¶ äºŒä¸ªåˆ†æ”¯ï¼Œä»¥åŠä»–ä»¬çš„ç¥–å…ˆ
 
-git push origin :iss53 --É¾³ıiss53·ÖÖ§
-git push [Ô¶³ÌÃû] [±¾µØ·ÖÖ§]:[Ô¶³Ì·ÖÖ§]
+git push origin :iss53 --åˆ é™¤iss53åˆ†æ”¯
+git push [è¿œç¨‹å] [æœ¬åœ°åˆ†æ”¯]:[è¿œç¨‹åˆ†æ”¯]
 
-Ö»ÒªÄã²»ºÍ·şÎñÆ÷Í¨Ñ¶£¬ÄãµÄorigin/masterÖ¸ÕëÈÔÈ»±£³ÖÔ­Î»²»»áÒÆ¶¯
+åªè¦ä½ ä¸å’ŒæœåŠ¡å™¨é€šè®¯ï¼Œä½ çš„origin/masteræŒ‡é’ˆä»ç„¶ä¿æŒåŸä½ä¸ä¼šç§»åŠ¨
 git fetch origin 
-git branch -d testing É¾³ı·ÖÖ§£¬
-Èç¹ûÄãĞÂ´´½¨µÄ·ÖÖ§Ã»ÓĞmerge ,ÄÇÃ´»áÌáÊ¾´íÎó ÒòÎªÕâÑù»á¶ªÊ§Êı¾İ
+git branch -d testing åˆ é™¤åˆ†æ”¯ï¼Œ
+å¦‚æœä½ æ–°åˆ›å»ºçš„åˆ†æ”¯æ²¡æœ‰merge ,é‚£ä¹ˆä¼šæç¤ºé”™è¯¯ å› ä¸ºè¿™æ ·ä¼šä¸¢å¤±æ•°æ®
 git mergetool
 
-branch ·ÖÖ§
-Git ÖĞµÄ·ÖÖ§£¬ÆäÊµ±¾ÖÊÉÏ½ö½öÊÇ¸öÖ¸Ïò commit ¶ÔÏóµÄ¿É±äÖ¸Õë
-HEAD ¿ÉÒÔÏëÏóÎªµ±Ç°·ÖÖ§µÄ±ğÃû
-git checkout -b iss53 Ïàµ±ÓÚ
+branch åˆ†æ”¯
+Git ä¸­çš„åˆ†æ”¯ï¼Œå…¶å®æœ¬è´¨ä¸Šä»…ä»…æ˜¯ä¸ªæŒ‡å‘ commit å¯¹è±¡çš„å¯å˜æŒ‡é’ˆ
+HEAD å¯ä»¥æƒ³è±¡ä¸ºå½“å‰åˆ†æ”¯çš„åˆ«å
+git checkout -b iss53 ç›¸å½“äº
 git branch iss53
 git checkout iss53
-gitk ¿É²é¿´·ÖÖ§Ê÷
+gitk å¯æŸ¥çœ‹åˆ†æ”¯æ ‘
 
 ####################################################
 
-´ò±êÇ©
+æ‰“æ ‡ç­¾
 git tag 
-git tag -a tag1 -m "µÚÒ»¸ö±êÇ©"
-git tag -a tag0 818739fa23c4 -m 'mv file'  ¸øÀúÊ·Ìá½»´´½¨±êÇ©
-git push note tag0 Ìá½»tag0  ·¢²¼release°æ±¾
+git tag -a tag1 -m "ç¬¬ä¸€ä¸ªæ ‡ç­¾"
+git tag -a tag0 818739fa23c4 -m 'mv file'  ç»™å†å²æäº¤åˆ›å»ºæ ‡ç­¾
+git push note tag0 æäº¤tag0  å‘å¸ƒreleaseç‰ˆæœ¬
 git push origin --tags
-¿ÉÒÔÉèÖÃ±ğÃû , 
-$ git config --global alias.co checkout  Ãü±ğÃû
+å¯ä»¥è®¾ç½®åˆ«å , 
+$ git config --global alias.co checkout  å‘½åˆ«å
 $ git config --global alias.br branch
 $ git config --global alias.ci commit
 $ git config --global alias.st status
 
 git config --global alias.last "log --pretty=oneline"
-gitk µ¯³öÍ¼ĞÎ½çÃæ
+gitk å¼¹å‡ºå›¾å½¢ç•Œé¢
 $ git config --global alias.visual '!gitk'
 
 #####################################################
@@ -47,44 +47,44 @@ $ git config --global alias.visual '!gitk'
 git push [remote-name] [branch-name]
 git remote rename origin og
 
-git fetch [remote-name] ÃüÁî»áµ½Ô¶³Ì²Ö¿âÖĞÀ­È¡ËùÓĞÄã±¾µØ²Ö¿âÖĞ»¹Ã»ÓĞµÄÊı¾İ
+git fetch [remote-name] å‘½ä»¤ä¼šåˆ°è¿œç¨‹ä»“åº“ä¸­æ‹‰å–æ‰€æœ‰ä½ æœ¬åœ°ä»“åº“ä¸­è¿˜æ²¡æœ‰çš„æ•°æ®
 
-git checkout -- t.txt ¹¤×÷¿Õ¼äÖĞÒÑĞŞ¸ÄµÄÎÄ¼ş »ØÍËµ½ÉÏ´ÎÌá½»µÄ×´Ì¬
-git reset ½«´æÈëÔİ´æÇøµÄÎÄ¼ş»ØÍËµ½¹¤×÷¿Õ¼ä
+git checkout -- t.txt å·¥ä½œç©ºé—´ä¸­å·²ä¿®æ”¹çš„æ–‡ä»¶ å›é€€åˆ°ä¸Šæ¬¡æäº¤çš„çŠ¶æ€
+git reset å°†å­˜å…¥æš‚å­˜åŒºçš„æ–‡ä»¶å›é€€åˆ°å·¥ä½œç©ºé—´
 
-git log --pretty=format:"%h - %an, %ar : %s" ¸ñÊ½»¯ÀúÊ·Ìá½»ĞÅÏ¢
+git log --pretty=format:"%h - %an, %ar : %s" æ ¼å¼åŒ–å†å²æäº¤ä¿¡æ¯
 git log --graph
 
 git log --pretty=oneline
 
 
-git diff ²é¿´Ôİ´æÇøÓë¹¤×÷ÇøµÄÇø±ğ¡£
+git diff æŸ¥çœ‹æš‚å­˜åŒºä¸å·¥ä½œåŒºçš„åŒºåˆ«ã€‚
 git diff --cached 
-git diff --staged ²é¿´Ôİ´æÇøÓëÉÏ´ÎÌá½»µÄ¿ìÕÕµÄÇø±ğ
-git commit -a -m 'Ìø¹ıÔİ´æ²½ÖèÌá½»'
-git rm git.txt  -> commit -> push -> È»ºó¾ÍOKÁË
-git rm --cached test.class ±íÊ¾´Ó¸ú×ÙÇåµ¥ÖĞÉ¾³ı,µ«ÊÇµ±Ç°Ä¿Â¼ÏÂ»¹ÊÇ´æÔÚ£¬ÒÔ±ãÒÔºóÔÚ.gitignore Ìí¼Ó
+git diff --staged æŸ¥çœ‹æš‚å­˜åŒºä¸ä¸Šæ¬¡æäº¤çš„å¿«ç…§çš„åŒºåˆ«
+git commit -a -m 'è·³è¿‡æš‚å­˜æ­¥éª¤æäº¤'
+git rm git.txt  -> commit -> push -> ç„¶åå°±OKäº†
+git rm --cached test.class è¡¨ç¤ºä»è·Ÿè¸ªæ¸…å•ä¸­åˆ é™¤,ä½†æ˜¯å½“å‰ç›®å½•ä¸‹è¿˜æ˜¯å­˜åœ¨ï¼Œä»¥ä¾¿ä»¥ååœ¨.gitignore æ·»åŠ 
 git add *.java 
 git add xxx.xxx
-git mv test.txt t.txt ÖØÃüÃûÎÄ¼ş
-git log -p -2 ²é¿´×î½ü¶ş´ÎÌá½»µÄ²îÒì
+git mv test.txt t.txt é‡å‘½åæ–‡ä»¶
+git log -p -2 æŸ¥çœ‹æœ€è¿‘äºŒæ¬¡æäº¤çš„å·®å¼‚
 git log -p --word-diff
 
 
-git config --list ²é¿´ÅäÖÃĞÅÏ¢
-git config user.email  ²é¿´¾ßÌåÅäÖÃ 
+git config --list æŸ¥çœ‹é…ç½®ä¿¡æ¯
+git config user.email  æŸ¥çœ‹å…·ä½“é…ç½® 
 git config user.name
-git help add ²é¿´add ÃüÁîÎÄµµ
+git help add æŸ¥çœ‹add å‘½ä»¤æ–‡æ¡£
 
-°Ñ±¾µØÏîÄ¿ÉÏ´«µ½github 
-1. ÔÚgithub ÉÏ´´½¨repository ÆğÃû note
-2. ¼ÙÉè£º ±¾µØÓĞÃûÁËnote µÄÎÄ¼ş¼Ğ ½øÈëÎÄ¼ş¼ĞÖĞ Êó±êÓÒ¼ü -> Git Bash Here
-3. git init              # ´´½¨±¾µØrepository
-4. git add -A            # Ìá½»±¾µØ´úÂë
-5. git commit -m initial # ÕâÒ»²½Ö»ÊÇ±¾µØÌá½»
-6. git remote add origin https://github.com/lx106/note.git # ¹ØÁªÔ¶³Ìrepository
-7. git push origin master # Ìá½»µ½Ô¶³Ì²Ö¿â  
-OK Íê³É£¡
+æŠŠæœ¬åœ°é¡¹ç›®ä¸Šä¼ åˆ°github 
+1. åœ¨github ä¸Šåˆ›å»ºrepository èµ·å note
+2. å‡è®¾ï¼š æœ¬åœ°æœ‰åäº†note çš„æ–‡ä»¶å¤¹ è¿›å…¥æ–‡ä»¶å¤¹ä¸­ é¼ æ ‡å³é”® -> Git Bash Here
+3. git init              # åˆ›å»ºæœ¬åœ°repository
+4. git add -A            # æäº¤æœ¬åœ°ä»£ç 
+5. git commit -m initial # è¿™ä¸€æ­¥åªæ˜¯æœ¬åœ°æäº¤
+6. git remote add origin https://github.com/lx106/note.git # å…³è”è¿œç¨‹repository
+7. git push origin master # æäº¤åˆ°è¿œç¨‹ä»“åº“  
+OK å®Œæˆï¼
  
 
 git init
@@ -101,15 +101,15 @@ git status
 # Changed but not updated:
 #   modified:   change-me
 #   deleted:    delete-me
-# Untracked files:  ±íÊ¾ĞÂÔöµÄÎÄ¼ş£¬»¹Ã»ÓĞÈÎºÎgit²Ù×÷
+# Untracked files:  è¡¨ç¤ºæ–°å¢çš„æ–‡ä»¶ï¼Œè¿˜æ²¡æœ‰ä»»ä½•gitæ“ä½œ
 #   add-me
 
-git clone git@github.com:lx106/note.git Ê¹ÓÃSSH Ğ­Òé
-git clone https://github.com/lx106/note.git note Ê¹ÓÃhttpsĞ­Òé
-git clone git://github.com/schacon/grit.git mygrit Ê¹ÓÃgit Ğ­Òé
+git clone git@github.com:lx106/note.git ä½¿ç”¨SSH åè®®
+git clone https://github.com/lx106/note.git note ä½¿ç”¨httpsåè®®
+git clone git://github.com/schacon/grit.git mygrit ä½¿ç”¨git åè®®
 
-¹¤×÷Ä¿Â¼ÏÂÃæµÄËùÓĞÎÄ¼ş Ö»ÓĞÁ½ÖÖ×´Ì¬ ÒÑ¸ú×Ù/ Î´¸ú×Ù
-ÒÑ¸ú×Ù (Î´¸üĞÂ/ ÒÑĞŞ¸Ä /·ÅÈëÔİ´æÇø ) 
-Î´¸ú×Ù ¼ÈÃ»ÓĞÉÏ´Î¸üĞÂÊ±µÄ¿ìÕÕ£¬Ò²²»ÔÚµ±Ç°µÄÔİ´æÇøÓò
-Ö»ÒªÔÚ ¡°Changes to be committed¡± ÕâĞĞÏÂÃæµÄ£¬¾ÍËµÃ÷ÊÇÒÑÔİ´æ×´Ì¬
+å·¥ä½œç›®å½•ä¸‹é¢çš„æ‰€æœ‰æ–‡ä»¶ åªæœ‰ä¸¤ç§çŠ¶æ€ å·²è·Ÿè¸ª/ æœªè·Ÿè¸ª
+å·²è·Ÿè¸ª (æœªæ›´æ–°/ å·²ä¿®æ”¹ /æ”¾å…¥æš‚å­˜åŒº ) 
+æœªè·Ÿè¸ª æ—¢æ²¡æœ‰ä¸Šæ¬¡æ›´æ–°æ—¶çš„å¿«ç…§ï¼Œä¹Ÿä¸åœ¨å½“å‰çš„æš‚å­˜åŒºåŸŸ
+åªè¦åœ¨ â€œChanges to be committedâ€ è¿™è¡Œä¸‹é¢çš„ï¼Œå°±è¯´æ˜æ˜¯å·²æš‚å­˜çŠ¶æ€
 
