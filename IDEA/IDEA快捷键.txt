@@ -6,7 +6,6 @@ win10 快捷键 win +  上下 可放大缩小网页 /以及隐藏网页
 ctrl+f8                               在当前行添加/取消断点
 shift+f9                              debug运行
 ctrl+shift+f8                         可查看所有断点
-mute breakpoint                       禁止所有断点
 ctrl+shift+f8                         在断点处添加条件 当条件成立才进入断点
 alt+f8                                evaluate expression
 list.add("111");                       
@@ -68,10 +67,7 @@ alt + v 然后 Enter Presentation Mode 进入全屏
 ################## ctrl #########################
 ctrl+  . 折叠/打开当前方法 同ctrl + - 
 ctrl + 1,2,3..9: 前往助记键处(对数字助记键有效)
-ctrl + a  全选
 ctrl + b: 前往光标所在的方法、变量定义处(同等于 ctrl + 鼠标左键单击)
-ctrl + c: 如果无选择内容 则copy当前行
-ctrl + d: 复制当前行到下一行
 ctrl + e: 显示最近打开的文件记录列表 / 如果内存不足需要调大
 ctrl + f: 当前文件查找
 ctrl + g: 前往当前文件指定行处
@@ -87,10 +83,6 @@ ctrl + r: 当前文件替换 比 ctrl + f 更好用
 ctrl + tab: 编辑窗口切换(按住 ctrl 键，可结合 上下键 + delete 关闭文件)
 ctrl + t: 版本控制更新项目
 ctrl + u: 前往光标所在方法的父类方法、接口定义
-ctrl + w: 递进选择(扩大范围) 结合alt+j 可重构
-ctrl + x: 剪切光标所在行；剪切选择内容  
-ctrl + y: 删除光标所在行
-ctrl + z：撤销
 ctrl + +: 展开代码
 ctrl + -: 折叠代码
 ctrl + /: 注释代码  //格式 不必再该行开始位置
@@ -151,7 +143,6 @@ ctrl + shift + alt + s: 打开当前项目设置
 F1:   帮助文档
 F2:   前往下一个错误处
 F3:   在查找模式下，前往下一个匹配处
-F4:
 F5:   copy class
 F6:   move 可移动类的package位置
 F7:

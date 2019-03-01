@@ -102,7 +102,7 @@ git status
 #   modified:   change-me
 #   deleted:    delete-me
 # Untracked files:  表示新增的文件，还没有任何git操作
-#   add-me
+#   add-me  
 
 git clone git@github.com:lx106/note.git 使用SSH 协议
 git clone https://github.com/lx106/note.git note 使用https协议
